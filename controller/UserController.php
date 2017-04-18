@@ -67,4 +67,10 @@ class UserController
           //header('Location: /user');
       }
     }
+
+    public function upload() {
+      $view = new View('user_upload');
+      $view->title = 'Upload';
+      $view->display();
+    }
 }
