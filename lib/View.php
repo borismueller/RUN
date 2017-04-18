@@ -82,8 +82,10 @@ class View
     {
         extract($this->properties);
 
-        require './../view/header.php';
-        require $this->viewfile;
-        require './../view/footer.php';
+        if (isset($_SESSION['id'])) {
+          require './../view/header.php';
+          require $this->viewfile;
+          require './../view/footer.php';
+        }
     }
 }
