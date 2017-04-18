@@ -21,8 +21,7 @@ class UserController
     public function create()
     {
         $view = new View('user_create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view->title = 'Register';
         $view->display();
     }
 
@@ -53,13 +52,12 @@ class UserController
 
     public function login() {
       $view = new View('user_login');
-      $view->title = 'Einloggen';
-      $view->heading = 'Einloggen';
+      $view->title = 'Login';
       $view->display();
     }
 
     public function doLogin() {
-      if ($_POST['send']) {
+      if ($_POST['Submit']) {
           $username = $_POST['username'];
           $password = $_POST['password'];
 
