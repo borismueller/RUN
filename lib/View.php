@@ -86,6 +86,8 @@ class View
           require './../view/header.php';
           require $this->viewfile;
           require './../view/footer.php';
+        } else {
+          require $this->viewfile;
         }
     }
 }
