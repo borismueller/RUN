@@ -18,7 +18,7 @@ class UserRepository extends Repository
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
      *
-     * Das Passwort wird vor dem ausführen des Queries noch mit dem SHA1
+     * Das Passwort wird vor dem ausführen des Queries noch mit dem PASSWORD_DEFAULT
      *  Algorythmus gehashed.
      *
      * @param $firstName Wert für die Spalte firstName
