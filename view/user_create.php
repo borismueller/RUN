@@ -20,33 +20,27 @@
     <![endif]-->
   </head>
   <body>
-		<form class="form-horizontal" action="/user/doCreate" method="post">
-			<div class="component" data-html="true">
-				<div class="form-group">
-		  	<div class="col-md-4">
-		  		<input id="firstName" name="firstName" type="text" placeholder="Vorname" class="form-control input-md">
-		  	</div>
+		<form class="center-form" action="/user/doCreate" method="post">
+			<div>
+			<!-- TODO LOGO-->
+			<div>
+				<label class="label-help">?</label><br>
+				<input id="" class="input-form" name="username" type="text" placeholder="Username">
 			</div>
-			<div class="form-group">
-		  	<div class="col-md-4">
-		  		<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md">
-		  	</div>
+			<div>
+				<label class="label-help">?</label><br>
+				<input id="" class="input-form" name="password" type="password" placeholder="Password">
 			</div>
-			<div class="form-group">
-		  	<div class="col-md-4">
-		  		<input id="password" name="password" type="password" placeholder="Repeat Passwort" class="form-control input-md">
-		  	</div>
+			<div>
+				<input id="" class="input-form" name="password" type="password" placeholder="Repeat password">
 			</div>
-			<div class="form-group">
-	      	<label class="col-md-2 control-label" for="send">&nbsp;</label>
-		  	<div class="col-md-4">
-		    	<input id="send" name="send" type="submit" class="btn btn-primary">
-		  	</div>
+			<div class="submit-form-div">
+				<input id="" class="submit-form" name="Submit" type="submit" value="Submit">
 			</div>
-		</div>
-	</form>
-
-	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+			</div>
+			<a href="/user/login" class="form-switch">Have an account ?</a>
+		</form>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	  </body>
 	</html>

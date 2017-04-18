@@ -20,25 +20,22 @@
     <![endif]-->
   </head>
   <body>
-		<form class="form-horizontal" action="/user/doLogin" method="post">
-			<div class="component" data-html="true">
-				<div class="form-group">
-		  	<div class="col-md-4">
-		  		<input id="username" name="username" type="text" placeholder="Username" class="form-control input-md">
-		  	</div>
+		<form class="center-form" action="/user/doLogin" method="post">
+      <div>
+      <!--TODO LOGO -->
+			<div>
+        <label class="label-help">?</label><br>
+		  	<input id="" class="input-form" name="username" type="text" placeholder="Username">
 			</div>
-			<div class="form-group">
-		  	<div class="col-md-4">
-		  		<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md">
-		  	</div>
+      <div>
+				<label class="label-help">?</label><br>
+				<input id="" class="input-form" name="password" type="password" placeholder="Password">
 			</div>
-			<div class="form-group">
-	      	<label class="col-md-2 control-label" for="send">&nbsp;</label>
-		  	<div class="col-md-4">
-		    	<input id="send" name="send" type="submit" class="btn btn-primary">
-		  	</div>
+      <div class="submit-form-div">
+				<input id="" class="submit-form" name="Submit" type="submit" value="Login">
 			</div>
-		</div>
+      </div>
+  	   <a href="/user/create" class="form-switch">Create an account</a>
 	</form>
 
 	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
