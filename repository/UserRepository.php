@@ -39,7 +39,6 @@ class UserRepository extends Repository
           //TODO: bessere meldung
           echo "Ein Fehler ist aufgetreten";
         } else {
-          echo $username;
           echo $password;
           $statement->bind_param('ss', $username, $password);
           $statement->execute();
@@ -62,7 +61,11 @@ class UserRepository extends Repository
         } else {
           $statement->bind_param('s', $username);
           $statement->execute();
-          $statement->bind_result($db_password);
+          //get the result and turn it into a string
+          //ofc you need 3 lines for that shit
+          $result = $statement->get_result();
+          $result = $result->fetch_object();
+          $db_password = $result->password;
         }
 
         if (password_verify($password, $db_password)){
@@ -71,6 +74,7 @@ class UserRepository extends Repository
         }
         else {
           echo "no";
+          //TODO: ERROR
         }
 
         if (!$statement->execute()) {
