@@ -43,4 +43,8 @@ class UserRepository extends Repository
 
         return $statement->insert_id;
     }
+
+    public function login($username, $password) {
+        //TODO: password_hash(), etc
+    }
 }

@@ -50,4 +50,23 @@ class UserController
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /user');
     }
+
+    public function login() {
+      $view = new View('user_login');
+      $view->title = 'Einloggen';
+      $view->heading = 'Einloggen';
+      $view->display();
+    }
+
+    public function doLogin() {
+      if ($_POST['send']) {
+          $username = $_POST['username'];
+          $password = $_POST['password'];
+
+          $userRepository = new UserRepository();
+          $userRepository->login($username, $password);
+
+          header('Location: /user');
+      }
+    }
 }
