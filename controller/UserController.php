@@ -71,4 +71,26 @@ class UserController
       $view->title = 'Upload';
       $view->display();
     }
+
+    public function doUpload() {
+      //TODO: evtl. FileController ??
+      //username, speicherung (in Repository?)
+      if ($_POST['Submit']) {
+          $name = $_POST['name'];
+          $tags = $_POST['tags'];
+          $acces = $_POST['acces'];
+
+          $file = $_FILES['file'];
+
+          /*if (move_uploaded_file($file["tmp_name"], '../data/files/'.$file["name"])){
+            echo "yo";
+          }
+          else {
+            echo "fkc";
+          }*/
+
+          $fileRepository = new FileRepository();
+          $fileRepository->create()
+      }
+    }
 }
