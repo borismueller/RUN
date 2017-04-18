@@ -21,7 +21,8 @@
   </head>
   <body>
     <div class="header-bar">
-      <button>Logout</button>
+      <textarea></textarea>
+      <button id="header-button">Logout</button>
     </div>
     <div class="container">
 

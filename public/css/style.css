@@ -42,7 +42,14 @@ body {
 }
 
 .header-bar {
-  height: 200px;
-  width: 100px;
+  height: 10vh;
+  width: 100%;
   background-color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+#header-button {
+  height: 2em;
+  vertical-align: middle;
 }
