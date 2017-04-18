@@ -20,7 +20,7 @@
     <![endif]-->
   </head>
   <body>
-		<form class="center-form" action="/user/doUpload" method="post">
+		<form class="center-form" action="/user/doUpload" enctype="multipart/form-data" method="post">
       <div>
       <!--TODO LOGO -->
 			<div>
