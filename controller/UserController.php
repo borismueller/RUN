@@ -66,7 +66,7 @@ class UserController
           $userRepository = new UserRepository();
           $userRepository->login($username, $password);
 
-          header('Location: /user');
+          //header('Location: /user');
       }
     }
 }

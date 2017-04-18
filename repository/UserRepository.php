@@ -30,7 +30,8 @@ class UserRepository extends Repository
      */
     public function create($firstName, $lastName, $email, $password)
     {
-        $password = sha1($password);
+        //TODO:
+        $password = sha1($password); //password_hash
 
         $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
 
@@ -45,6 +46,28 @@ class UserRepository extends Repository
     }
 
     public function login($username, $password) {
-        //TODO: password_hash(), etc
+        $query = "SELECT password FROM $this->tableName WHERE name = ?";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        if (!$statement){
+          //TODO: bessere meldung
+          echo "Ein Fehler ist aufgetreten";
+        } else {
+          $statement->bind_param('s', $username);
+          $statement->execute();
+          $statement->bind_result($db_password);
+        }
+
+        if (password_verify($password, $db_password)){
+          echo "yo";
+          //TODO: goto user-area
+        }
+        else {
+          echo "no";
+        }
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 }
