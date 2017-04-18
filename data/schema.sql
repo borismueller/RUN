@@ -1,12 +1,37 @@
-﻿DROP TABLE IF EXISTS user;
-CREATE TABLE  user (
-  id        INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  firstName VARCHAR(64)  NOT NULL,
-  lastName  VARCHAR(64)  NOT NULL,
-  email     VARCHAR(128) NOT NULL,
-  password  VARCHAR(40)  NOT NULL,
-  PRIMARY KEY  (id)
+DROP DATABASE IF EXISTS RUN;
+CREATE DATABASE RUN;
+USE RUN;
+
+CREATE TABLE user (
+  id        INT NOT NULL AUTO_INCREMENT,
+  name      VARCHAR(64) NOT NULL,
+  password  VARCHAR(128) NOT NULL,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO user (firstName, lastName, email, password) VALUES ('Ramon',  'Binz',  'ramon.binz@bbcag.ch',   sha1('ramon'));
-INSERT INTO user (firstName, lastName, email, password) VALUES ('Samuel', 'Wicky', 'samuel.wicky@bbcag.ch', sha1('samuel'));
+CREATE TABLE file (
+  id        INT NOT NULL AUTO_INCREMENT,
+  name      VARCHAR(64),
+  tags      VARCHAR(64),
+  path      VARCHAR(64),
+  user_id   INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE tag (
+  user_id    INT NOT NULL,
+  file_id    INT NOT NULL,
+  name       VARCHAR(64) NOT NULL,
+  PRIMARY KEY (user_id, file_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (file_id) REFERENCES file(id)
+);
+
+CREATE TABLE visible (
+  user_id    INT NOT NULL,
+  file_id    INT NOT NULL,
+  PRIMARY KEY (user_id, file_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (file_id) REFERENCES file(id)
+)
