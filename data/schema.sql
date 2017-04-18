@@ -14,9 +14,7 @@ CREATE TABLE file (
   name      VARCHAR(64),
   tags      VARCHAR(64),
   path      VARCHAR(64),
-  user_id   INT,
-  PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE tag (
