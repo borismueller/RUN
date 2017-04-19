@@ -130,9 +130,11 @@ class UserController
           if (!isset($_SESSION['username'])){
               echo "not logged in";
           }
-          $username = $_SESSION['username'];
 
+          $username = $_SESSION['username'];
           $path = "../data/files/".$username."/".$file['name'];
+          //TODO: $_GET subfolder from upload
+
 
           if (!is_dir("../data/files/".$username)) {
               //create dir if it doesnt exist
@@ -143,7 +145,7 @@ class UserController
             $fileRepository = new FileRepository();
 
             if (!empty($fileRepository->getId($name))) {
-                //user with that name already exists
+                //file with that name already exists
                 //TODO tell user about error
                 header('Location: /user/upload');
                 return;
@@ -198,6 +200,28 @@ class UserController
           //create dir if it doesnt exist
           mkdir("../data/files/".$username."/".$name, 0777, true);
         }
+
+
+        $fileRepository = new FileRepository();
+        if (!empty($fileRepository->getId($name))) {
+            //file with that name already exists
+            //TODO tell user about error
+            header('Location: /user/upload');
+            return;
+        }
+
+        $fileRepository->create($name, "", $path);//no tag
+
+        $file_id = $fileRepository->getId($name);
+        $file_id = $file_id->id;
+
+        $userRepository = new userRepository();
+        $user_id = $userRepository->getId($username);
+        $user_id = $user_id->id;
+
+        $userFileRepository = new UserFileRepository();
+        $userFileRepository->create($user_id, $file_id, "");//no tag
+        header('Location: /user');
       }
 
       header('Location: /user/');
