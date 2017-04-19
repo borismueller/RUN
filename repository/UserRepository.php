@@ -31,13 +31,11 @@ class UserRepository extends Repository
     public function create($username, $password)
     {
         $password = password_hash ($password, PASSWORD_DEFAULT);
-
         $query = "INSERT INTO $this->tableName (name, password) VALUES (?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         if (!$statement){
-          //TODO: bessere meldung
-          echo "Ein Fehler ist aufgetreten";
+          throw new Exception($statement->error);
         } else {
           $statement->bind_param('ss', $username, $password);
           $statement->execute();

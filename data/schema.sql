@@ -4,7 +4,7 @@ USE RUN;
 
 CREATE TABLE user (
   id        INT NOT NULL AUTO_INCREMENT,
-  name      VARCHAR(64) NOT NULL,
+  name      VARCHAR(64) NOT NULL UNIQUE,
   password  VARCHAR(128) NOT NULL,
   PRIMARY KEY (id)
 );

@@ -54,11 +54,17 @@ class UserController
             $password = $_POST['password'];
 
             $userRepository = new UserRepository();
+            
+            if (!empty($userRepository->getId($username))) {
+                //user with that name already exists
+                //TODO tell user about error
+                header('Location: /user/create');
+                return;
+            }
             $userRepository->create($username, $password);
             $_SESSION['username'] = $username;
             header('Location: /user');
         }
-
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         //header('Location: /user');
     }
