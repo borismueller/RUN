@@ -1,13 +1,9 @@
-		<form class="center-form" action="/user/doUpload" enctype="multipart/form-data" method="post">
+		<form class="center-form" action="/user/TODO?" enctype="multipart/form-data" method="post">
       <div>
       <!--TODO LOGO -->
-			<div>
-        <input id="" class="input-form" name="file" type="file" >
-		  	<input id="" class="input-form" name="name" type="text" placeholder="name">
-			</div>
       <div>
 				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="tags" type="text" placeholder="tags">
+				<input id="" class="input-form" name="tags" type="text" placeholder="name">
 			</div>
       <div>
 				<label class="label-help">?</label><br>
@@ -17,6 +13,6 @@
 				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
 			</div>
       </div>
-      <a href="/user/create_file" class="form-switch">Create a folder</a>
+      <a href="/user/upload" class="form-switch">Upload a file</a>
   	  <a href="/user" class="form-switch">return</a>
 	</form>
