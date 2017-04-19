@@ -14,9 +14,29 @@ class UserController
         $userRepository = new UserRepository();
 
         $view = new View('user_index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
-        $view->users = $userRepository->readAll();
+        $view->title = 'RUN';
+
+        if (!isset($_SESSION['username'])){
+            echo "not logged in";
+            //TODO:
+        }
+
+        $userRepository = new UserRepository();
+        $uid = $userRepository->getId($_SESSION['username'])->id;
+
+        $userFileRepository = new UserFileRepository();
+        if (!empty($userFileRepository->getFileIds($uid))) {
+            $fids = $userFileRepository->getFileIds($uid);
+
+            $fileRepository = new FileRepository();
+            $files = array();
+            foreach ($fids as $fid) {
+              $files[] = $fileRepository->readById($fid->file_id);
+            }
+
+            $view->files = $files;
+        }
+
         $view->display();
     }
 
