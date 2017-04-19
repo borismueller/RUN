@@ -23,10 +23,6 @@
              $statement->execute();
            }
 
-           if (!$statement->execute()) {
-               throw new Exception($statement->error);
-           }
-
            return $statement->insert_id;
      }
 
