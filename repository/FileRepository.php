@@ -11,23 +11,51 @@
  {
      protected $tableName = 'file';
 
-   //TODO: insert in den relevanten Tabellen
-   public function create($name, $tags, $path) {
-       $query = "INSERT INTO $this->tableName (name, tags, path) VALUES (?, ?, ?)";
+     public function create($name, $tags, $path) {
+           $query = "INSERT INTO $this->tableName (name, tags, path) VALUES (?, ?, ?)";
 
-       $statement = ConnectionHandler::getConnection()->prepare($query);
-       if (!$statement){
-         //TODO: bessere meldung
-         echo "Ein Fehler ist aufgetreten";
-       } else {
-         $statement->bind_param('sss', $name, $tags, $path);
+           $statement = ConnectionHandler::getConnection()->prepare($query);
+           if (!$statement){
+             //TODO: bessere meldung
+             echo "Ein Fehler ist aufgetreten";
+           } else {
+             $statement->bind_param('sss', $name, $tags, $path);
+             $statement->execute();
+           }
+
+           if (!$statement->execute()) {
+               throw new Exception($statement->error);
+           }
+
+           return $statement->insert_id;
+     }
+
+     public function getId($name)
+     {
+         // Query erstellen
+         $query = "SELECT id FROM {$this->tableName} WHERE name=?";
+
+         // Datenbankverbindung anfordern und, das Query "preparen" (vorbereiten)
+         // und die Parameter "binden"
+         $statement = ConnectionHandler::getConnection()->prepare($query);
+         $statement->bind_param('s', $name);
+
+         // Das Statement absetzen
          $statement->execute();
-       }
 
-       if (!$statement->execute()) {
-           throw new Exception($statement->error);
-       }
+         // Resultat der Abfrage holen
+         $result = $statement->get_result();
+         if (!$result) {
+             throw new Exception($statement->error);
+         }
 
-       return $statement->insert_id;
-   }
- }
+         // Ersten Datensatz aus dem Reultat holen
+         $row = $result->fetch_object();
+
+         // Datenbankressourcen wieder freigeben
+         $result->close();
+
+         // Den gefundenen Datensatz zurückgeben
+         return $row;
+     }
+}

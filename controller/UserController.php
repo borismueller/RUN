@@ -2,6 +2,7 @@
 
 require_once '../repository/UserRepository.php';
 require_once '../repository/FileRepository.php';
+require_once '../repository/UserFileRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -88,7 +89,6 @@ class UserController
       //TODO: evtl. FileController ??
       //username, speicherung (in Repository?)
       if ($_POST['Submit']) {
-          //username should always be there but just in case
           $name = $_POST['name'];
           $tags = $_POST['tags'];
           $acces = $_POST['acces'];
@@ -97,19 +97,34 @@ class UserController
           if (!isset($_SESSION['username'])){
               echo "not logged in";
           }
+          $username = $_SESSION['username'];
 
-          $path = "../data/files/".$_SESSION['username']."/".$file['name'];
+          $path = "../data/files/".$username."/".$file['name'];
 
           echo $path;
 
-          if (!is_dir("../data/files/".$_SESSION['username'])) {
+          if (!is_dir("../data/files/".$username)) {
               //create dir if it doesnt exist
-              mkdir("../data/files/".$_SESSION['username'], 0777, true);
+              mkdir("../data/files/".$username, 0777, true);
           }
 
           if (move_uploaded_file($file["tmp_name"], $path)){
             $fileRepository = new FileRepository();
             $fileRepository->create($name, $tags, $path);
+
+            $file_id = $fileRepository->getId($name);
+            $file_id = $file_id->id;
+            var_dump($file_id);
+            echo "<br>";
+
+            $userRepository = new userRepository();
+            $user_id = $userRepository->getId($username);
+            $user_id = $user_id->id;
+
+            var_dump($user_id);
+
+            $userFileRepository = new UserFileRepository();
+            $userFileRepository->create($user_id, $file_id, $tags);
           }
           else {
             echo "fkc";
