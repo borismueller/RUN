@@ -11,7 +11,7 @@ CREATE TABLE user (
 
 CREATE TABLE file (
   id        INT NOT NULL AUTO_INCREMENT,
-  name      VARCHAR(64),
+  name      VARCHAR(64) UNIQUE,
   tags      VARCHAR(64),
   path      VARCHAR(64),
   PRIMARY KEY (id)

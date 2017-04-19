@@ -110,8 +110,6 @@ class UserController
     }
 
     public function doUpload() {
-      //TODO: evtl. FileController ??
-      //username, speicherung (in Repository?)
       if ($_POST['Submit']) {
           $name = htmlspecialchars($_POST['name']);
           $tags = htmlspecialchars($_POST['tags']);
@@ -125,8 +123,6 @@ class UserController
 
           $path = "../data/files/".$username."/".$file['name'];
 
-          echo $path;
-
           if (!is_dir("../data/files/".$username)) {
               //create dir if it doesnt exist
               mkdir("../data/files/".$username, 0777, true);
@@ -134,6 +130,14 @@ class UserController
 
           if (move_uploaded_file($file["tmp_name"], $path)){
             $fileRepository = new FileRepository();
+
+            if (!empty($fileRepository->getId($name))) {
+                //user with that name already exists
+                //TODO tell user about error
+                header('Location: /user/upload');
+                return;
+            }
+
             $fileRepository->create($name, $tags, $path);
 
             $file_id = $fileRepository->getId($name);
@@ -149,6 +153,7 @@ class UserController
           }
           else {
             echo "fkc";
+            sleep(4);
           }
       }
     }
