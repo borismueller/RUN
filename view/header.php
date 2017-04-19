@@ -21,9 +21,16 @@
   </head>
   <body>
     <div class="header-bar">
-      <textarea></textarea>
+      <form class="search-form">
+        <div>
+          <input id="" class="" type="text" name="searchbar" placeholder="Search">
+          <div>TODO Search icon</div>
+        </div>
+      </form>
       <button id="header-button">Logout</button>
     </div>
-    <div class="container">
+    <div class="main">
+      <div class="header-column">
 
-    <h1><?= $heading ?></h1>
+      </div>
+      <div class="container">

@@ -41,15 +41,40 @@ body {
   align-self: flex-end;
 }
 
+
+
+
 .header-bar {
   height: 10vh;
   width: 100%;
   background-color: black;
-  display: flex;
-  justify-content: space-between;
+  padding: 3vh 5% 3vh 0;
 }
 
 #header-button {
   height: 2em;
-  vertical-align: middle;
+  float: right;
+}
+
+.search-form {
+  width: 15vw;
+  float: left;
+}
+
+.main {
+  clear: both;
+  height: 90vh;
+  width: 100%;
+}
+
+.header-column {
+  height: 90vh;
+  width: 10vw;
+  background-color: black;
+  float: left;
+}
+
+.container {
+  width: 90%;
+  float: right;
 }
