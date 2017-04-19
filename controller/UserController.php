@@ -58,8 +58,8 @@ class UserController
 
     public function doLogin() {
       if ($_POST['Submit']) {
-          $username = $_POST['username'];
-          $password = $_POST['password'];
+          $username = htmlspecialchars($_POST['username']);
+          $password = htmlspecialchars($_POST['password']);
 
           $userRepository = new UserRepository();
 
@@ -89,9 +89,9 @@ class UserController
       //TODO: evtl. FileController ??
       //username, speicherung (in Repository?)
       if ($_POST['Submit']) {
-          $name = $_POST['name'];
-          $tags = $_POST['tags'];
-          $acces = $_POST['acces'];
+          $name = htmlspecialchars($_POST['name']);
+          $tags = htmlspecialchars($_POST['tags']);
+          $acces = htmlspecialchars($_POST['acces']);
           $file = $_FILES['file'];
 
           if (!isset($_SESSION['username'])){
