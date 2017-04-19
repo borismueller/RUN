@@ -27,12 +27,10 @@
           <div>TODO Search icon</div>
         </div>
       </form>
-      <button id="header-button">Logout</button>
+      <button id="header-button" onclick="location='/user/logout'">Logout</button>
     </div>
     <div class="main">
       <div class="header-column">
 
       </div>
       <div class="container">
-
-      

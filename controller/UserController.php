@@ -55,6 +55,8 @@ class UserController
 
             $userRepository = new UserRepository();
             $userRepository->create($username, $password);
+            $_SESSION['username'] = $username;
+            header('Location: /user');
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
@@ -86,16 +88,12 @@ class UserController
           if ($userRepository->login($username, $password)){
               //login korrekt
               $_SESSION['username'] = $username;
-              echo "gj";
-              echo $_SESSION['username'];
-              //TODO: goto user-area
+              header('Location: /user');
           } else {
               //Fehler
               echo "shit";
               //TODO:
           }
-
-          //header('Location: /user');
       }
     }
 
@@ -150,5 +148,10 @@ class UserController
             echo "fkc";
           }
       }
+    }
+
+    public function logout() {
+      session_destroy();
+      header('Location: /');
     }
 }

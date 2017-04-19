@@ -39,7 +39,6 @@ class UserRepository extends Repository
           //TODO: bessere meldung
           echo "Ein Fehler ist aufgetreten";
         } else {
-          echo $password;
           $statement->bind_param('ss', $username, $password);
           $statement->execute();
         }
