@@ -26,14 +26,14 @@
 			<!-- TODO LOGO-->
 			<div>
 				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="username" type="text" placeholder="Username">
+				<input id="" class="input-form" name="username" type="text" placeholder="Username" required>
 			</div>
 			<div>
 				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="password" type="password" placeholder="Password">
+				<input id="" class="input-form" name="password" type="password" placeholder="Password" required>
 			</div>
 			<div>
-				<input id="" class="input-form" name="password" type="password" placeholder="Repeat password">
+				<input id="" class="input-form" name="password" type="password" placeholder="Repeat password" required>
 			</div>
 			<div class="submit-form-div">
 				<input id="" class="submit-form" name="Submit" type="submit" value="Submit">
