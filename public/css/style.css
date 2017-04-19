@@ -77,4 +77,61 @@ body {
 .container {
   width: 90%;
   float: right;
+  display: flex;
+  padding: 2vh 2vw;
+}
+
+
+
+
+
+.object {
+  width: 8vw;
+  text-align: center;
+  margin: 1.5vh 1.5vw;
+}
+
+
+.item {
+  height: 12vh;
+  width: 100%;
+}
+
+.item-type {
+  height: 80%;
+  width: 100%;
+}
+
+.item-desc {
+  width: 100%;
+}
+
+.item-desc-name {
+  width: 70%;
+  text-align: left;
+  float: left;
+}
+
+.item-desc-icon {
+  float: right;
+}
+
+
+.tag {
+  width: 100%;
+}
+
+.tag-text {
+  width: 70%;
+  text-align: left;
+  float: left;
+}
+
+.tag-icon {
+  float: right;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
 }
