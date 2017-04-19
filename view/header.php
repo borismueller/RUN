@@ -28,6 +28,7 @@
         </div>
       </form>
       <button id="header-button" onclick="location='/user/logout'">Logout</button>
+      <a href="/user/user_settings">setting</a>
     </div>
     <div class="main">
       <div class="header-column">
