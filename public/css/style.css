@@ -131,6 +131,16 @@ body {
   float: right;
 }
 
+
+.plus {
+  height: 12vh;
+  width: 100%;
+  font-size: 500%;
+  line-height: 12vh;
+  text-shadow: 0 0 10px gray;
+  color: white;
+}
+
 footer {
   position: absolute;
   bottom: 0;

@@ -20,5 +20,8 @@ if (!empty($files)){
 			    </div>';
 	}
 }
-//TODO: plus
 ?>
+
+<div class="object">
+  <div class="plus" onclick="location='/user/upload'">+</div>
+</div>
