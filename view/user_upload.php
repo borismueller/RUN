@@ -39,7 +39,8 @@
 				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
 			</div>
       </div>
-  	   <a href="/user/create" class="form-switch">Create an account</a>
+      <a href="/user/.." class="form-switch">Create a folder</a>
+  	  <a href="/user" class="form-switch">return</a>
 	</form>
 
 	    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

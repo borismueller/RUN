@@ -54,7 +54,7 @@ class UserController
             $password = $_POST['password'];
 
             $userRepository = new UserRepository();
-            
+
             if (!empty($userRepository->getId($username))) {
                 //user with that name already exists
                 //TODO tell user about error
@@ -138,17 +138,14 @@ class UserController
 
             $file_id = $fileRepository->getId($name);
             $file_id = $file_id->id;
-            var_dump($file_id);
-            echo "<br>";
 
             $userRepository = new userRepository();
             $user_id = $userRepository->getId($username);
             $user_id = $user_id->id;
 
-            var_dump($user_id);
-
             $userFileRepository = new UserFileRepository();
             $userFileRepository->create($user_id, $file_id, $tags);
+            header('Location: /user');
           }
           else {
             echo "fkc";
