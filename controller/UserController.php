@@ -1,6 +1,7 @@
 <?php
 
 require_once '../repository/UserRepository.php';
+require_once '../repository/FileRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
@@ -60,7 +61,18 @@ class UserController
           $password = $_POST['password'];
 
           $userRepository = new UserRepository();
-          $userRepository->login($username, $password);
+
+          if ($userRepository->login($username, $password)){
+              //login korrekt
+              $_SESSION['username'] = $username;
+              echo "gj";
+              echo $_SESSION['username'];
+              //TODO: goto user-area
+          } else {
+              //Fehler
+              echo "shit";
+              //TODO:
+          }
 
           //header('Location: /user');
       }
@@ -76,21 +88,32 @@ class UserController
       //TODO: evtl. FileController ??
       //username, speicherung (in Repository?)
       if ($_POST['Submit']) {
+          //username should always be there but just in case
           $name = $_POST['name'];
           $tags = $_POST['tags'];
           $acces = $_POST['acces'];
-
           $file = $_FILES['file'];
 
-          /*if (move_uploaded_file($file["tmp_name"], '../data/files/'.$file["name"])){
-            echo "yo";
+          if (!isset($_SESSION['username'])){
+              echo "not logged in";
+          }
+
+          $path = "../data/files/".$_SESSION['username']."/".$file['name'];
+
+          echo $path;
+
+          if (!is_dir("../data/files/".$_SESSION['username'])) {
+              //create dir if it doesnt exist
+              mkdir("../data/files/".$_SESSION['username'], 0777, true);
+          }
+
+          if (move_uploaded_file($file["tmp_name"], $path)){
+            $fileRepository = new FileRepository();
+            $fileRepository->create($name, $tags, $path);
           }
           else {
             echo "fkc";
-          }*/
-
-          $fileRepository = new FileRepository();
-          $fileRepository->create()
+          }
       }
     }
 }

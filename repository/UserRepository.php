@@ -65,20 +65,24 @@ class UserRepository extends Repository
           //ofc you need 3 lines for that shit
           $result = $statement->get_result();
           $result = $result->fetch_object();
+          if (!$result){
+              return false;
+          }
           $db_password = $result->password;
         }
 
         if (password_verify($password, $db_password)){
           echo "yo";
-          //TODO: goto user-area
+          return true;
         }
         else {
           echo "no";
-          //TODO: ERROR
+          return false;
         }
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
+            return false;
         }
     }
 }

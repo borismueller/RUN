@@ -17,19 +17,11 @@ CREATE TABLE file (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE tag (
+CREATE TABLE user_file (
   user_id    INT NOT NULL,
   file_id    INT NOT NULL,
-  name       VARCHAR(64) NOT NULL,
+  tag       VARCHAR(64) NOT NULL,
   PRIMARY KEY (user_id, file_id),
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (file_id) REFERENCES file(id)
 );
-
-CREATE TABLE visible (
-  user_id    INT NOT NULL,
-  file_id    INT NOT NULL,
-  PRIMARY KEY (user_id, file_id),
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (file_id) REFERENCES file(id)
-)
