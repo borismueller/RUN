@@ -53,6 +53,12 @@ class UserController
             $username = $_POST['username'];
             $password = $_POST['password'];
 
+            if ($username == "" || empty($username) || $password == "" || empty($password)){
+              //TODO tell user about error
+              header('Location: /user/create');
+              return;
+            }
+
             $userRepository = new UserRepository();
 
             if (!empty($userRepository->getId($username))) {
@@ -85,7 +91,7 @@ class UserController
     }
 
     public function doLogin() {
-      if ($_POST['Submit']) {
+      if (isset($_POST['Submit'])) {
           $username = htmlspecialchars($_POST['username']);
           $password = htmlspecialchars($_POST['password']);
 
@@ -110,8 +116,13 @@ class UserController
     }
 
     public function doUpload() {
-      if ($_POST['Submit']) {
+      if (isset($_POST['Submit'])) {
           $name = htmlspecialchars($_POST['name']);
+          if ($name == "" || empty($name)){
+            //TODO tell user about error
+            header('Location: /user/upload');
+            return;
+          }
           $tags = htmlspecialchars($_POST['tags']);
           $acces = htmlspecialchars($_POST['acces']);
           $file = $_FILES['file'];
@@ -153,9 +164,43 @@ class UserController
           }
           else {
             echo "fkc";
-            sleep(4);
           }
       }
+    }
+
+    public function makeDir() {
+      $view = new View('user_makeDir');
+      $view->title = 'Upload';
+      $view->display();
+    }
+
+    public function doMakeDir() {
+      if (isset($_POST['Submit'])) {
+        $name = htmlspecialchars($_POST['name']);
+        if ($name == "" || empty($name)){
+          //TODO tell user about error
+          header('Location: /user/makeDir');
+          return;
+        }
+        if (!isset($_SESSION['username'])){
+          echo "not logged in";
+        }
+        $username = $_SESSION['username'];
+
+        $path = "../data/files/".$username."/".$name;
+
+        if (!is_dir("../data/files/".$username)) {
+          //create user-dir if it doesnt exist
+          mkdir("../data/files/".$username, 0777, true);
+        }
+
+        if (!is_dir("../data/files/".$username."/".$name)) {
+          //create dir if it doesnt exist
+          mkdir("../data/files/".$username."/".$name, 0777, true);
+        }
+      }
+
+      header('Location: /user/');
     }
 
     public function logout() {

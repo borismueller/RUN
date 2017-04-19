@@ -1,9 +1,9 @@
-		<form class="center-form" action="/user/TODO?" enctype="multipart/form-data" method="post">
+		<form class="center-form" action="/user/DoMakeDir" enctype="multipart/form-data" method="post">
       <div>
       <!--TODO LOGO -->
       <div>
 				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="tags" type="text" placeholder="name">
+				<input id="" class="input-form" name="name" type="text" placeholder="name">
 			</div>
       <div>
 				<label class="label-help">?</label><br>

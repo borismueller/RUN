@@ -17,6 +17,6 @@
 				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
 			</div>
       </div>
-      <a href="/user/create_file" class="form-switch">Create a folder</a>
+      <a href="/user/makeDir" class="form-switch">Create a folder</a>
   	  <a href="/user" class="form-switch">return</a>
 	</form>
