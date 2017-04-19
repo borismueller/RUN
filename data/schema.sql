@@ -25,3 +25,7 @@ CREATE TABLE user_file (
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (file_id) REFERENCES file(id)
 );
+
+
+#--makes a user with the password test
+INSERT INTO user (name, password) VALUES ('test', '$2y$10$/wt7Nannt9mfYCEw0e/B6.PBpPCMnRuyAmHKBEI8O6Vm0R6BQkAdi');
