@@ -55,6 +55,29 @@
          return $row;
      }
 
+     public function getFilesByNameAndTag($name)
+     {
+       $query = "SELECT * FROM file WHERE name=? OR tags=?";
+
+       $statement = ConnectionHandler::getConnection()->prepare($query);
+       $statement->bind_param('ss', $name, $name);
+
+       $statement->execute();
+
+       $result = $statement->get_result();
+       if (!$result) {
+           throw new Exception($statement->error);
+       }
+
+       // Datensätze aus dem Resultat holen und in das Array $rows speichern
+       $rows = array();
+       while ($row = $result->fetch_object()) {
+           $rows[] = $row;
+       }
+
+       return $rows;
+     }
+
      public function delTagById($id) {
        $query = "UPDATE {$this->tableName} SET tags = '' WHERE id=?";
 
