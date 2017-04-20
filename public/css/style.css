@@ -33,6 +33,7 @@ body {
   outline: none;
   border: none;
   border-bottom: 5px solid white;
+
 }
 
 .input-form:active {
@@ -41,6 +42,18 @@ body {
 
 .input-form:focus {
   border-bottom: 5px solid #7864ed;
+}
+
+.input-form:focus:valid {
+  border-bottom: 5px solid #64ed78;
+}
+
+.input-form:invalid {
+  outline: none;
+}
+
+.input-form:focus:invalid {
+  border-bottom: 5px solid #ed7864;
 }
 
 .submit-form-div {
@@ -55,6 +68,7 @@ body {
   width: 15vw;
   background: #99b9f3;
   border-bottom: 10px solid #99b9f3;
+  transition: all 0.5s;
 }
 
 .submit-form:hover {
@@ -78,16 +92,44 @@ body {
   width: 100%;
   background-color: #2a4d67;
   padding: 3vh 5% 3vh 0;
+  font-size: 2vmin;
 }
 
 #header-button {
   height: 2em;
   float: right;
+  outline: none;
+  border: none;
+  width: 15vw;
+  background: white;
+  border-bottom: 10px solid white;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+   transition: all 0.5s;
+}
+
+#header-button:hover {
+  border-bottom: 10px solid #7864ed;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
 }
 
 .search-form {
   width: 15vw;
   float: left;
+  margin-left: 20vw;
+  transition: all 0.5s;
+  box-sizing: border-box;
+}
+
+.input-search:focus {
+  border-bottom: 10px solid #7864ed;
+}
+
+.settings {
+  margin-left: 5vmin;
 }
 
 .main {
@@ -119,6 +161,16 @@ body {
   width: 8vw;
   text-align: center;
   margin: 1.5vh 1.5vw;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  padding: 2px;
+}
+
+.object:hover {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
 }
 
 
@@ -169,8 +221,7 @@ body {
   width: 100%;
   font-size: 500%;
   line-height: 12vh;
-  text-shadow: 0 0 10px gray;
-  color: white;
+  color: black;
   cursor: pointer;
 }
 

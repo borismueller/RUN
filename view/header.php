@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -23,14 +23,14 @@
   </head>
   <body>
     <div class="header-bar">
-      <form class="search-form">
+      <form class="search-form" action="/user/search" method="post">
         <div>
-          <input id="" class="" type="text" name="searchbar" placeholder="Search">
-          <div>TODO Search icon</div>
+          <input id="" class="input-search" type="text" name="searchbar" placeholder="Search">
+          <!--<div>TODO Search icon</div>-->
         </div>
       </form>
       <button id="header-button" onclick="location='/user/logout'">Logout</button>
-      <a href="/user/user_settings">setting</a>
+      <a class="settings" href="/user/user_settings">setting</a>
     </div>
     <div class="main">
       <div class="header-column">
