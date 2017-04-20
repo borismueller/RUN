@@ -21,8 +21,8 @@ CREATE TABLE user_file (
   user_id    INT NOT NULL,
   file_id    INT NOT NULL,
   PRIMARY KEY (user_id, file_id),
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (file_id) REFERENCES file(id)
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (file_id) REFERENCES file(id) ON DELETE CASCADE
 );
 
 

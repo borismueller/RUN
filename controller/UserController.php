@@ -230,6 +230,15 @@ class UserController
       header('Location: /user/');
     }
 
+    public function delFile()
+    {
+      $file_id = $_GET['id'];
+      $fileRepository = new FileRepository();
+      $fileRepository->delFileById($file_id);
+
+      header('Location: /user');
+    }
+
     public function delTag() {
       $file_id = $_GET['id'];
       $fileRepository = new FileRepository();

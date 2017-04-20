@@ -63,4 +63,13 @@
 
        $statement->execute();
      }
+
+     public function delFileById($id) {
+       $query = "DELETE FROM {$this->tableName} WHERE id=?";
+
+       $statement = ConnectionHandler::getConnection()->prepare($query);
+       $statement->bind_param('i', $id);
+
+       $statement->execute();
+     }
 }
