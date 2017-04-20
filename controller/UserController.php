@@ -17,8 +17,11 @@ class UserController
     $view->title = 'RUN';
 
     if (!isset($_SESSION['username'])){
-      throw new Exception("Not logged in", 1);
-      //TODO:
+      $view = new View('user_login');
+      $view->title = 'Login';
+      $view->error = "Acces denied.";
+      $view->display();
+      return;
     }
 
     $userRepository = new UserRepository();
@@ -49,13 +52,25 @@ class UserController
 
   public function doCreate()
   {
+    //TODO: dont reset form after error messages
     if ($_POST['Submit']) {
       $username = $_POST['username'];
       $password = $_POST['password'];
+      $passwordRepeat = $_POST['passwordRepeat'];
 
       if ($username == "" || empty($username) || $password == "" || empty($password)){
-        //TODO tell user about error
-        header('Location: /user/create');
+        $view = new View('user_create');
+        $view->title = 'Register';
+        $view->error = "Name and password can't be empty";
+        $view->display();
+        return;
+      }
+
+      if ($password !== $passwordRepeat) {
+        $view = new View('user_create');
+        $view->title = 'Register';
+        $view->error = "Passwords have to match";
+        $view->display();
         return;
       }
 
@@ -63,16 +78,16 @@ class UserController
 
       if (!empty($userRepository->getId($username))) {
         //user with that name already exists
-        //TODO tell user about error
-        header('Location: /user/create');
+        $view = new View('user_create');
+        $view->title = 'Register';
+        $view->error = "A User with that name already exists";
+        $view->display();
         return;
       }
       $userRepository->create($username, $password);
       $_SESSION['username'] = $username;
       header('Location: /user');
     }
-    // Anfrage an die URI /user weiterleiten (HTTP 302)
-    //header('Location: /user');
   }
 
   public function delete()
@@ -103,8 +118,11 @@ class UserController
         header('Location: /user');
       } else {
         //Fehler
-        echo "shit";
-        //TODO:
+        $view = new View('user_login');
+        $view->title = 'Login';
+        $view->error = "Login not correct";
+        $view->display();
+        return;
       }
     }
   }
@@ -119,8 +137,10 @@ class UserController
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
-        //TODO tell user about error
-        header('Location: /user/upload');
+        $view = new View('user_upload');
+        $view->title = 'Upload';
+        $view->error = "Name can't be empty.";
+        $view->display();
         return;
       }
       $tags = htmlspecialchars($_POST['tags']);
@@ -128,8 +148,11 @@ class UserController
       $file = $_FILES['file'];
 
       if (!isset($_SESSION['username'])){
-        throw new Exception("Not logged in");
-
+        $view = new View('user_upload');
+        $view->title = 'Upload';
+        $view->error = "You are not logged in.";
+        $view->display();
+        return;
       }
 
       $username = $_SESSION['username'];
@@ -147,10 +170,10 @@ class UserController
 
         if (!empty($fileRepository->getId($name))) {
           //file with that name already exists
-          //TODO tell user about error
-          throw new Exception("Error Processing Request", 1);
-
-          header('Location: /user/upload');
+          $view = new View('user_upload');
+          $view->title = 'Upload';
+          $view->error = "A File with that name already exists.";
+          $view->display();
           return;
         }
 
@@ -168,7 +191,11 @@ class UserController
         header('Location: /user');
       }
       else {
-        echo "fkc";
+        $view = new View('user_upload');
+        $view->title = 'Upload';
+        $view->error = "Something went wrong.";
+        $view->display();
+        return;
       }
     }
   }
@@ -183,8 +210,10 @@ class UserController
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
-        //TODO tell user about error
-        header('Location: /user/makeDir');
+        $view = new View('user_makeDir');
+        $view->title = 'Create Folder';
+        $view->error = "Name can't be empty";
+        $view->display();
         return;
       }
       if (!isset($_SESSION['username'])){
@@ -208,8 +237,10 @@ class UserController
       $fileRepository = new FileRepository();
       if (!empty($fileRepository->getId($name))) {
         //file with that name already exists
-        //TODO tell user about error
-        header('Location: /user/upload');
+        $view = new View('user_makeDir');
+        $view->title = 'Create Folder';
+        $view->error = "A File with that name already exists";
+        $view->display();
         return;
       }
 
