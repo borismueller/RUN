@@ -134,6 +134,7 @@ class UserController
   }
 
   public function doUpload() {
+    //TODO file size
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
