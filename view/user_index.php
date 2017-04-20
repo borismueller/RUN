@@ -28,7 +28,7 @@
 					<div class="tag-icon"><a href="user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 				</div>
 			<?php endif ?>
-			<a href="user/delFile?id=<?= $file->id ?>">DEL</a>
+			<a href="/user/delFile?id=<?= $file->id ?>">DEL</a>
 		</div>
 	<?php endforeach ?>
 <?php endif ?>
