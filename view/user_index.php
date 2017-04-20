@@ -25,7 +25,7 @@
 			<?php if (!empty($file->tags)) : ?>
 				<div class="tag">
 					<div class="tag-text"><?= $file->tags ?></div>
-					<div class="tag-icon">&#10005;</div>
+					<div class="tag-icon"><a href="user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 				</div>
 			<?php endif ?>
 		</div>

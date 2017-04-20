@@ -230,6 +230,14 @@ class UserController
       header('Location: /user/');
     }
 
+    public function delTag() {
+      $file_id = $_GET['id'];
+      $fileRepository = new FileRepository();
+      $fileRepository->delTagById($file_id);
+
+      header('Location: /user');
+    }
+
     public function logout() {
       session_destroy();
       header('Location: /');

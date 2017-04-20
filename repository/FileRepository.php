@@ -54,4 +54,13 @@
          // Den gefundenen Datensatz zurückgeben
          return $row;
      }
+
+     public function delTagById($id) {
+       $query = "UPDATE {$this->tableName} SET tags = '' WHERE id=?";
+
+       $statement = ConnectionHandler::getConnection()->prepare($query);
+       $statement->bind_param('i', $id);
+
+       $statement->execute();
+     }
 }
