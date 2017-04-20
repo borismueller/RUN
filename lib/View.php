@@ -82,6 +82,10 @@ class View
     {
         extract($this->properties);
 
+        if (isset($error)) {
+          require './../view/error.php';
+        }
+
         if (isset($_SESSION['username'])) {
           require './../view/header.php';
           require $this->viewfile;

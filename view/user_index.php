@@ -1,8 +1,3 @@
-<?php if (!empty($error)) : ?>
-<div class="error">
-<?php echo $error ?>
-</div>
-<?php endif ?>
 <?php if (!empty($files)) : ?>
 	<?php foreach ($files as $file) : ?>
 		<div class="object">
