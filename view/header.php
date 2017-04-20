@@ -35,6 +35,6 @@
   <div class="main">
     <div class="header-column">
       <div class="logo"><img src="/images/run.png" width="150"></div>
-      <div class="fileproperties"></div>
+      <div class="properties"></div>
     </div>
     <div class="container">

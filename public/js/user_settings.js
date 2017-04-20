@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('.props').click(function(e) {
+  $('.settings').click(function(e) {
     e.preventDefault();
 
     var props_url = $(this).attr('href');
