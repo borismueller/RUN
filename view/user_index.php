@@ -19,7 +19,7 @@
 				?>
 				<div class="item-desc">
 					<div class="item-desc-name"><?= $file->name ?></div>
-					<div class="item-desc-icon">icon</div>
+					<div class="item-desc-icon"><a class="props" href="/user/fileprops?id=<?= $file->id ?>">icon</a></div>
 				</div>
 			</div>
 			<?php if (!empty($file->tags)) : ?>

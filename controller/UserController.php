@@ -295,4 +295,18 @@ class UserController
     session_destroy();
     header('Location: /');
   }
+
+
+
+  public function fileprops() {
+    $fileid = $_GET['id'];
+
+    $fileRepository = new FileRepository();
+    $file = $fileRepository->readById($fileid);
+
+    $view = new View('file_properties');
+    $view->file = $file;
+    $view->displayOnly();
+  }
+
 }

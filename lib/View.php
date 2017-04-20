@@ -95,4 +95,10 @@ class View
         }
 
     }
+
+    public function displayOnly() {
+      extract($this->properties);
+      
+      require $this->viewfile;
+    }
 }
