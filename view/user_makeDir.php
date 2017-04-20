@@ -1,3 +1,4 @@
+<div class="align-form">
 		<form class="center-form" action="/user/DoMakeDir" enctype="multipart/form-data" method="post">
       <div>
       <!--TODO LOGO -->
@@ -16,3 +17,4 @@
       <a href="/user/upload" class="form-switch">Upload a file</a>
   	  <a href="/user" class="form-switch">return</a>
 	</form>
+</div>

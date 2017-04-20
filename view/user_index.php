@@ -5,11 +5,11 @@
 				<?php $extension = pathinfo($file->path,PATHINFO_EXTENSION);
 				switch ($extension) {
 					case 'png':
-					echo '<div class="item-type"><img src="'.$file->path.'" width="100"></div>';
+					echo '<div class="item-type"><img src="/'.$file->path.'" width="100"></div>';
 					break;
 
 					case 'jpg':
-					echo '<div class="item-type"><img src="'.$file->path.'" width="100"></div>';
+					echo '<div class="item-type"><img src="/'.$file->path.'" width="100"></div>';
 					break;
 
 					default:

@@ -17,7 +17,7 @@ body {
 
 .center-form {
   width: 20vw;
-  height: 30vh;
+  height: 40vh;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -120,8 +120,12 @@ body {
   width: 15vw;
   float: left;
   margin-left: 20vw;
-  transition: all 0.5s;
   box-sizing: border-box;
+  transition: all 5s;
+}
+
+.input-search:active {
+  border-bottom: 10px solid #7864ed;
 }
 
 .input-search:focus {
