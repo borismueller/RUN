@@ -78,6 +78,7 @@ body {
   width: 90%;
   float: right;
   display: flex;
+  flex-wrap: wrap;
   padding: 2vh 2vw;
 }
 
