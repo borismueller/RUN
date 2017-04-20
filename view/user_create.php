@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
 				<input id="" class="input-form" name="password" type="password" placeholder="Password" required>
 			</div>
 			<div>
-				<input id="" class="input-form" name="password" type="password" placeholder="Repeat password" required>
+				<input id="" class="input-form" name="passwordRepeat" type="password" placeholder="Repeat password" required>
 			</div>
 			<div class="submit-form-div">
 				<input id="" class="submit-form" name="Submit" type="submit" value="Submit">
