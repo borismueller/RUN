@@ -56,11 +56,18 @@ class Dispatcher
         //   Achtung! Hier stützt PHP ab, sollte der Controller nicht existieren
         if (file_exists("../controller/$controllerName.php")){
             require_once "../controller/$controllerName.php";
+        } else {
+            $controllerName = "DefaultController";
+            require_once "../controller/DefaultController.php";
         }
 
         // Eine neue Instanz des Controllers wird erstellt und die gewünschte
         //   Methode darauf aufgerufen.
         $controller = new $controllerName();
-        $controller->$method();
+        if (method_exists($controller, $method)) {
+            $controller->$method();
+        } else {
+            $controller->index();
+        }
     }
 }
