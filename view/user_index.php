@@ -2,7 +2,21 @@
 	<?php foreach ($files as $file) : ?>
 		<div class="object">
 			<div class="item">
-				<div class="item-type">itemtype</div>
+				<?php $extension = pathinfo($file->path,PATHINFO_EXTENSION);
+				switch ($extension) {
+					case 'png':
+					echo '<div class="item-type"><img src="'.$file->path.'" height="42" width="42"></div>';
+					break;
+
+					case 'jpg':
+					echo '<div class="item-type"><img src="'.$file->path.'" height="42" width="42"></div>';
+					break;
+
+					default:
+					echo '<div class="item-type">.'.$extension.'</div>';
+					break;
+				}
+				?>
 				<div class="item-desc">
 					<div class="item-desc-name"><?= $file->name ?></div>
 					<div class="item-desc-icon">icon</div>

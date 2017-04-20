@@ -101,6 +101,7 @@ body {
 .item-type {
   height: 80%;
   width: 100%;
+  font-size: 250%;
 }
 
 .item-desc {

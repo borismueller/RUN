@@ -133,13 +133,13 @@ class UserController
           }
 
           $username = $_SESSION['username'];
-          $path = "../data/files/".$username."/".$file['name'];
+          $path = "data/files/".$username."/".$file['name'];
           //TODO: $_GET subfolder from upload
 
 
-          if (!is_dir("../data/files/".$username)) {
+          if (!is_dir("data/files/".$username)) {
               //create dir if it doesnt exist
-              mkdir("../data/files/".$username, 0777, true);
+              mkdir("data/files/".$username, 0777, true);
           }
 
           if (move_uploaded_file($file["tmp_name"], $path)){
@@ -192,16 +192,16 @@ class UserController
         }
         $username = $_SESSION['username'];
 
-        $path = "../data/files/".$username."/".$name;
+        $path = "data/files/".$username."/".$name;
 
-        if (!is_dir("../data/files/".$username)) {
+        if (!is_dir("data/files/".$username)) {
           //create user-dir if it doesnt exist
-          mkdir("../data/files/".$username, 0777, true);
+          mkdir("data/files/".$username, 0777, true);
         }
 
-        if (!is_dir("../data/files/".$username."/".$name)) {
+        if (!is_dir("data/files/".$username."/".$name)) {
           //create dir if it doesnt exist
-          mkdir("../data/files/".$username."/".$name, 0777, true);
+          mkdir("data/files/".$username."/".$name, 0777, true);
         }
 
 
