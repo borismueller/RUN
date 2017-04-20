@@ -17,7 +17,7 @@ class UserController
         $view->title = 'RUN';
 
         if (!isset($_SESSION['username'])){
-            echo "not logged in";
+            throw new Exception("Not logged in", 1);
             //TODO:
         }
 
@@ -128,7 +128,8 @@ class UserController
           $file = $_FILES['file'];
 
           if (!isset($_SESSION['username'])){
-              echo "not logged in";
+              throw new Exception("Not logged in");
+
           }
 
           $username = $_SESSION['username'];
@@ -147,6 +148,8 @@ class UserController
             if (!empty($fileRepository->getId($name))) {
                 //file with that name already exists
                 //TODO tell user about error
+                throw new Exception("Error Processing Request", 1);
+
                 header('Location: /user/upload');
                 return;
             }
@@ -161,7 +164,7 @@ class UserController
             $user_id = $user_id->id;
 
             $userFileRepository = new UserFileRepository();
-            $userFileRepository->create($user_id, $file_id, $tags);
+            $userFileRepository->create($user_id, $file_id);
             header('Location: /user');
           }
           else {
@@ -220,7 +223,7 @@ class UserController
         $user_id = $user_id->id;
 
         $userFileRepository = new UserFileRepository();
-        $userFileRepository->create($user_id, $file_id, "");//no tag
+        $userFileRepository->create($user_id, $file_id);
         header('Location: /user');
       }
 

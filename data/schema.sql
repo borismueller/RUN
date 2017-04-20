@@ -20,7 +20,6 @@ CREATE TABLE file (
 CREATE TABLE user_file (
   user_id    INT NOT NULL,
   file_id    INT NOT NULL,
-  tag       VARCHAR(64) NOT NULL,
   PRIMARY KEY (user_id, file_id),
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (file_id) REFERENCES file(id)

@@ -11,15 +11,16 @@
  {
      protected $tableName = 'user_file';
 
-     public function create($user_id, $file_id, $tag) {
-         $query = "INSERT INTO $this->tableName (user_id, file_id, tag) VALUES (?, ?, ?)";
+     public function create($user_id, $file_id) {
+         $query = "INSERT INTO $this->tableName (user_id, file_id) VALUES (?, ?)";
 
          $statement = ConnectionHandler::getConnection()->prepare($query);
          if (!$statement){
            //TODO: bessere meldung
-           echo "Ein Fehler ist aufgetreten";
+           throw new Exception($statement->erorr);
+
          } else {
-           $statement->bind_param('iis', $user_id, $file_id, $tag);
+           $statement->bind_param('ii', $user_id, $file_id);
            $statement->execute();
          }
 
