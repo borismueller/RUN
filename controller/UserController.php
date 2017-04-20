@@ -25,7 +25,8 @@ class UserController
     }
 
     $userRepository = new UserRepository();
-    $uid = $userRepository->getId($_SESSION['username'])->id;
+    $uid = $userRepository->getId($_SESSION['username']);
+    $uid = $uid->id;
 
     $userFileRepository = new UserFileRepository();
     if (!empty($userFileRepository->getFileIds($uid))) {
@@ -90,6 +91,42 @@ class UserController
     }
   }
 
+  public function user_settings() {
+    $username = $_SESSION['username'];
+
+    $userRepository = new UserRepository();
+    $user_id = $userRepository->getId($username);
+    $user = $userRepository->readById($user_id->id);
+
+    $view = new View('user_setting');
+    $view->user = $user;
+    $view->displayOnly();
+  }
+
+  public function doEdit()
+  {
+    $newUsername = htmlspecialchars($_POST['username']);
+    $newPassword = $_POST['password'];
+    $repPassword = $_POST['repeat'];
+
+    $userRepository = new UserRepository();
+    $id = $userRepository->getId($_SESSION['username']);
+    $id = $id->id;
+
+    if($newPassword !== $repPassword) {
+      $view = new View('user_settings');
+      $view->title = 'Edit';
+      $view->error = "Passwords have to match";
+      $view->display();
+      return;
+    }
+
+    $userRepository = new UserRepository();
+    $userRepository->changeUser($id, $newUsername, $newPassword);
+
+    header('Location: /user');
+  }
+
   public function delete()
   {
     $userRepository = new UserRepository();
@@ -134,7 +171,6 @@ class UserController
   }
 
   public function doUpload() {
-    //TODO file size
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){

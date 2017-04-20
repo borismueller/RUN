@@ -30,7 +30,7 @@
       </div>
     </form>
     <button id="header-button" onclick="location='/user/logout'">Logout</button>
-    <a class="settings" href="/user/user_settings">setting</a>
+    <a class="settings" href="/user/user_settings">settings</a>
   </div>
   <div class="main">
     <div class="header-column">

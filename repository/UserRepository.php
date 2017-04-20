@@ -107,4 +107,21 @@ class UserRepository extends Repository
         // Den gefundenen Datensatz zurückgeben
         return $row;
     }
+
+    public function changeUser($id, $username, $password)
+    {
+      $password = password_hash ($password, PASSWORD_DEFAULT);
+      $query = "UPDATE {$this->tableName} SET name=?, password=? WHERE id=?";
+
+      $statement = ConnectionHandler::getConnection()->prepare($query);
+      $statement->bind_param('ssi', $username, $password, $id);
+
+      $result = $statement->execute();
+
+      // Resultat der Abfrage holen
+      if (!$result) {
+          throw new Exception($statement->error);
+      }
+      $_SESSION['username'] = $username;
+    }
 }

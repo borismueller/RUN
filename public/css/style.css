@@ -238,7 +238,10 @@ footer {
   position: absolute;
 }
 
-
+.properties {
+  margin-top: 20vmin;
+  background: red;
+}
 
 .error {
   background: red;
