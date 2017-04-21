@@ -13,7 +13,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,7 +25,7 @@
     <div class="align-form">
 		<form class="center-form" action="/user/doLogin" method="post">
       <div>
-      <!--TODO LOGO -->
+        <img src="/images/run.png" width="150">
 			<div>
         <label class="label-help">?</label><br>
 		  	<input id="" class="input-form" name="username" type="text" placeholder="Username" required>

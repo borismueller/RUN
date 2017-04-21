@@ -25,7 +25,7 @@
 		<div class="align-form">
 		<form class="center-form" action="/user/doCreate" method="post">
 			<div>
-			<!-- TODO LOGO-->
+  			<img src="/images/run.png" width="150">
 			<div>
 				<label class="label-help">?</label><br>
 				<input id="" class="input-form" name="username" type="text" placeholder="Username" required>
