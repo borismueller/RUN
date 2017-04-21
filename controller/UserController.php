@@ -130,7 +130,6 @@ class UserController
     if (!isset($_SESSION['username'])){
       $this->error('user_login', 'Login', 'Acces denied.');
     }
-    //TODO: dont reset form after error messages
     if ($_POST['Submit']) {
       $username = $_POST['username'];
       $password = $_POST['password'];
@@ -286,6 +285,7 @@ class UserController
         if (!empty($fileRepository->getId($name))) {
           //file with that name already exists
           $this->error('user_upload', 'Upload', 'A file with that name already exists.');
+          return;
         }
 
         $fileRepository->create($name, $tags, $path);
@@ -333,7 +333,6 @@ class UserController
       if (!empty($_GET['folderName'])) {
         //check if we are in folder and save it if we are
         $folderName = $_GET['folderName'];
-        echo $folderName;
       }
 
       $name = htmlspecialchars($_POST['name']);
@@ -341,7 +340,7 @@ class UserController
         $this->error('user_makeDir', 'Create Folder', 'Name cant be empty.');
       }
       if (!isset($_SESSION['username'])){
-        echo "not logged in";
+        $this>error('user_login', 'Login', 'Access denied');
       }
       $username = $_SESSION['username'];
       if (!empty($folderName) && $folderName !== $username) {
@@ -349,10 +348,6 @@ class UserController
           $path = "data/files/".$username."/".$folderName."/".$name;
 
           $name = $folderName."/".$name; //change name
-
-          //TODO foldername is trimmed in sub-dirs
-
-          //throw new Exception("Error Processing Request", 1);
       } else {
           $path = "data/files/".$username."/".$name;
       }
@@ -371,6 +366,7 @@ class UserController
       if (!empty($fileRepository->getId($name))) {
         //file with that name already exists
         $this->error('user_makeDir', 'Create Folder', 'A File with that name alredy exists.');
+        return;
       }
 
       $fileRepository->create($name, "", $path);//no tag
