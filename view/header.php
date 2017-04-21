@@ -34,7 +34,7 @@
   </div>
   <div class="main">
     <div class="header-column">
-      <div class="logo"><img src="/images/run.png" width="150"></div>
+      <a href="/user"><div class="logo"><img src="/images/run.png" width="150"></div> </a>
       <div class="properties"></div>
     </div>
     <div class="container">

@@ -15,21 +15,18 @@
 				<label class="label-help">?</label><br>
 				<input id="" class="input-form" name="tags" type="text" placeholder="tags">
 			</div>
-      <div>
-				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="acces" type="text" placeholder="acces">
-			</div>
       <div class="submit-form-div">
 				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
 			</div>
       </div>
-			<?php
-			if (isset($folderName)) {
-				echo "<a href=\"/user/makeDir?folderName=$folderName\" class=\"form-switch glyphicon glyphicon-folder-open\"></a>";
-			} else {
-				echo '<a href="/user/makeDir" class="form-switch glyphicon glyphicon-folder-open"></a>';
-			} ?>
-			<a href="/user" class="form-switch glyphicon glyphicon-arrow-left"></a>
-
+			<div class="form-switch-container">
+				<?php
+				if (isset($folderName)) {
+					echo "<a href=\"/user/makeDir?folderName=$folderName\" class=\"form-switch glyphicon glyphicon-folder-open\"></a>";
+				} else {
+					echo '<a href="/user/makeDir" class="form-switch glyphicon glyphicon-folder-open"></a>';
+				} ?>
+				<a href="/user" class="form-switch glyphicon glyphicon-arrow-left"></a>
+			</div>
 	</form>
 </div>

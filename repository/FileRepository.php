@@ -95,4 +95,18 @@
 
        $statement->execute();
      }
+
+     public function changeFile($name, $id) {
+       $query = "UPDATE {$this->tableName} SET name=? WHERE id=?";
+
+       $statement = ConnectionHandler::getConnection()->prepare($query);
+       $statement->bind_param('si', $name, $id);
+
+       $result = $statement->execute();
+
+       // Resultat der Abfrage holen
+       if (!$result) {
+           throw new Exception($statement->error);
+       }
+     }
 }

@@ -34,7 +34,6 @@
 					<div class="tag-icon"><a href="/user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 				</div>
 			<?php endif ?>
-			<div class="tag-icon"><a href="user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 		</div>
 	<?php endforeach ?>
 <?php endif ?>
