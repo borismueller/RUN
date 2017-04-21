@@ -25,10 +25,11 @@
       </div>
 			<?php
 			if (isset($folderName)) {
-				echo "<a href=\"/user/makeDir?folderName=$folderName\" class=\"form-switch\">Create a Folder</a>";
+				echo "<a href=\"/user/makeDir?folderName=$folderName\" class=\"form-switch glyphicon glyphicon-folder-open\"></a>";
 			} else {
-				echo '<a href="/user/makeDir" class="form-switch">Create a Folder</a>';
+				echo '<a href="/user/makeDir" class="form-switch glyphicon glyphicon-folder-open"></a>';
 			} ?>
-  	  <a href="/user" class="form-switch">return</a>
+			<a href="/user" class="form-switch glyphicon glyphicon-arrow-left"></a>
+
 	</form>
 </div>

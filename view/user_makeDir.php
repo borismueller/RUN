@@ -17,15 +17,15 @@
 				<input id="" class="input-form" name="acces" type="text" placeholder="acces">
 			</div>
       <div class="submit-form-div">
-				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
+				<input id="" class="submit-form" name="Submit" type="submit" value="Create">
 			</div>
       </div>
 			<?php
 			if (isset($folderName)) {
-				echo "<a href=\"/user/upload?folderName=$folderName\" class=\"form-switch\">Upload a file</a>";
+				echo "<a href=\"/user/upload?folderName=$folderName\" class=\"form-switch glyphicon glyphicon-cloud-upload\"></a>";
 			} else {
-				echo '<a href="/user/upload" class="form-switch">Upload a file</a>';
+				echo '<a href="/user/upload" class="form-switch glyphicon glyphicon-cloud-upload"></a>';
 			} ?>
-  	  <a href="/user" class="form-switch">return</a>
+			<a href="/user" class="form-switch glyphicon glyphicon-arrow-left"></a>
 	</form>
 </div>

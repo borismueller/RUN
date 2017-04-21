@@ -25,7 +25,7 @@
 				?>
 				<div class="item-desc">
 					<div class="item-desc-name"><?= $file->name ?></div>
-					<div class="item-desc-icon"><a class="props" href="/user/fileprops?id=<?= $file->id ?>">icon</a></div>
+					<div class="item-desc-icon"><a class="props glyphicon glyphicon-cog" href="/user/fileprops?id=<?= $file->id ?>"></a></div>
 				</div>
 			</div>
 			<?php if (!empty($file->tags)) : ?>
@@ -34,7 +34,7 @@
 					<div class="tag-icon"><a href="/user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 				</div>
 			<?php endif ?>
-			<a href="/user/delFile?id=<?= $file->id ?>">DEL</a>
+			<div class="tag-icon"><a href="user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 		</div>
 	<?php endforeach ?>
 <?php endif ?>
