@@ -16,12 +16,9 @@ class UserController
     $view = new View('user_index');
     $view->title = 'RUN';
 
+
     if (!isset($_SESSION['username'])){
-      $view = new View('user_login');
-      $view->title = 'Login';
-      $view->error = "Acces denied.";
-      $view->display();
-      return;
+      $this->error('user_login', 'Login', 'Acces denied.');
     }
 
     $userRepository = new UserRepository();
@@ -53,6 +50,9 @@ class UserController
 
   public function doCreate()
   {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
     //TODO: dont reset form after error messages
     if ($_POST['Submit']) {
       $username = $_POST['username'];
@@ -60,30 +60,18 @@ class UserController
       $passwordRepeat = $_POST['passwordRepeat'];
 
       if ($username == "" || empty($username) || $password == "" || empty($password)){
-        $view = new View('user_create');
-        $view->title = 'Register';
-        $view->error = "Name and password can't be empty";
-        $view->display();
-        return;
+        $this->error('user_create', 'Register', "Name and password can't be empty.");
       }
 
       if ($password !== $passwordRepeat) {
-        $view = new View('user_create');
-        $view->title = 'Register';
-        $view->error = "Passwords have to match";
-        $view->display();
-        return;
+        $this->error('user_create', 'Register', 'Passwords have to match.');
       }
 
       $userRepository = new UserRepository();
 
       if (!empty($userRepository->getId($username))) {
         //user with that name already exists
-        $view = new View('user_create');
-        $view->title = 'Register';
-        $view->error = "A User with that name already exists";
-        $view->display();
-        return;
+        $this->error('user_create', 'Register', 'A User with that name already exists.');
       }
       $userRepository->create($username, $password);
       $_SESSION['username'] = $username;
@@ -105,6 +93,10 @@ class UserController
 
   public function doEdit()
   {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $newUsername = htmlspecialchars($_POST['username']);
     $newPassword = $_POST['password'];
     $repPassword = $_POST['repeat'];
@@ -114,11 +106,7 @@ class UserController
     $id = $id->id;
 
     if($newPassword !== $repPassword) {
-      $view = new View('user_settings');
-      $view->title = 'Edit';
-      $view->error = "Passwords have to match";
-      $view->display();
-      return;
+      $this->error('user_settings', 'Edit', 'Passwords have to match.');
     }
 
     $userRepository = new UserRepository();
@@ -129,6 +117,10 @@ class UserController
 
   public function delete()
   {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $userRepository = new UserRepository();
     $userRepository->deleteById($_GET['id']);
 
@@ -155,42 +147,34 @@ class UserController
         header('Location: /user');
       } else {
         //Fehler
-        $view = new View('user_login');
-        $view->title = 'Login';
-        $view->error = "Login not correct";
-        $view->display();
-        return;
+        $this->error('user_login', 'Login', 'Login not correct');
       }
     }
   }
 
   public function upload() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $view = new View('user_upload');
     $view->title = 'Upload';
     $view->display();
   }
 
   public function doUpload() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
-        $view = new View('user_upload');
-        $view->title = 'Upload';
-        $view->error = "Name can't be empty.";
-        $view->display();
-        return;
+        $this->error('user_upload', 'Upload', 'Name cant be empty.');
       }
       $tags = htmlspecialchars($_POST['tags']);
       $acces = htmlspecialchars($_POST['acces']);
       $file = $_FILES['file'];
-
-      if (!isset($_SESSION['username'])){
-        $view = new View('user_upload');
-        $view->title = 'Upload';
-        $view->error = "You are not logged in.";
-        $view->display();
-        return;
-      }
 
       $username = $_SESSION['username'];
       $path = "data/files/".$username."/".$file['name'];
@@ -207,11 +191,7 @@ class UserController
 
         if (!empty($fileRepository->getId($name))) {
           //file with that name already exists
-          $view = new View('user_upload');
-          $view->title = 'Upload';
-          $view->error = "A File with that name already exists.";
-          $view->display();
-          return;
+          $this->error('user_upload', 'Upload', 'A file with that name already exists.');
         }
 
         $fileRepository->create($name, $tags, $path);
@@ -228,30 +208,30 @@ class UserController
         header('Location: /user');
       }
       else {
-        $view = new View('user_upload');
-        $view->title = 'Upload';
-        $view->error = "Something went wrong.";
-        $view->display();
-        return;
+        $this->error('user_upload', 'Upload', 'Something went wrong.');
       }
     }
   }
 
   public function makeDir() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $view = new View('user_makeDir');
     $view->title = 'Upload';
     $view->display();
   }
 
   public function doMakeDir() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     if (isset($_POST['Submit'])) {
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
-        $view = new View('user_makeDir');
-        $view->title = 'Create Folder';
-        $view->error = "Name can't be empty";
-        $view->display();
-        return;
+        $this->error('user_makeDir', 'Create Folder', 'Name cant be empty.');
       }
       if (!isset($_SESSION['username'])){
         echo "not logged in";
@@ -274,11 +254,7 @@ class UserController
       $fileRepository = new FileRepository();
       if (!empty($fileRepository->getId($name))) {
         //file with that name already exists
-        $view = new View('user_makeDir');
-        $view->title = 'Create Folder';
-        $view->error = "A File with that name already exists";
-        $view->display();
-        return;
+        $this->error('user_makeDir', 'Create Folder', 'A File with that name alredy exists.');
       }
 
       $fileRepository->create($name, "", $path);//no tag
@@ -300,19 +276,30 @@ class UserController
 
   public function search()
   {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $content = htmlspecialchars($_POST['searchbar']);
 
     $view = new view('user_index');
+    $view->title = "RUN";
     $fileRepository = new FileRepository();
     if (!empty($fileRepository->getFilesByNameAndTag($content))) {
       $files = $fileRepository->getFilesByNameAndTag($content);
       $view->files = $files;
+    } else {
+      $view->error = "No Results";
     }
     $view->display();
   }
 
   public function delFile()
   {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $file_id = $_GET['id'];
     $fileRepository = new FileRepository();
     $fileRepository->delFileById($file_id);
@@ -321,6 +308,10 @@ class UserController
   }
 
   public function delTag() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $file_id = $_GET['id'];
     $fileRepository = new FileRepository();
     $fileRepository->delTagById($file_id);
@@ -336,6 +327,10 @@ class UserController
 
 
   public function fileprops() {
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
     $fileid = $_GET['id'];
 
     $fileRepository = new FileRepository();
@@ -344,6 +339,14 @@ class UserController
     $view = new View('file_properties');
     $view->file = $file;
     $view->displayOnly();
+  }
+
+  public function error($viewFile, $title,  $error) {
+    $view = new View($viewFile);
+    $view->title = $title;
+    $view->error = $error;
+    $view->display();
+    return;
   }
 
 }
