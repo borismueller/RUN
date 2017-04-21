@@ -1,5 +1,10 @@
 <div class="align-form">
-		<form class="center-form" action="/user/doUpload" enctype="multipart/form-data" method="post">
+	<?php
+		if (isset($folderName)) {
+			echo "<form class=\"center-form\" action=\"/user/doUpload?folderName=$folderName\" enctype=\"multipart/form-data\" method=\"post\">";
+		} else {
+			echo "<form class=\"center-form\" action=\"/user/doUpload\" enctype=\"multipart/form-data\" method=\"post\">";
+		} ?>
       <div>
       <!--TODO LOGO -->
 			<div>
@@ -18,7 +23,12 @@
 				<input id="" class="submit-form" name="Submit" type="submit" value="upload">
 			</div>
       </div>
-      <a href="/user/makeDir" class="form-switch">Create a folder</a>
+			<?php
+			if (isset($folderName)) {
+				echo "<a href=\"/user/makeDir?folderName=$folderName\" class=\"form-switch\">Create a Folder</a>";
+			} else {
+				echo '<a href="/user/makeDir" class="form-switch">Create a Folder</a>';
+			} ?>
   	  <a href="/user" class="form-switch">return</a>
 	</form>
 </div>

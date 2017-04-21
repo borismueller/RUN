@@ -13,13 +13,25 @@ class UserController
   {
     $userRepository = new UserRepository();
 
-    $view = new View('user_index');
-    $view->title = 'RUN';
-
-
     if (!isset($_SESSION['username'])){
       $this->error('user_login', 'Login', 'Acces denied.');
     }
+
+    if (!empty($_GET['name'])) {
+      $folderName = $_GET['name'];
+    } else {
+        $folderName = $_SESSION['username'];
+    }
+
+    $folderFragments = explode("/", $folderName);
+    if (sizeof($folderFragments) > 1) {
+      $displayFolderName = $folderFragments[sizeof($folderFragments) - 1]; //this name is only used for displaying
+    } else {
+      $displayFolderName = $_SESSION['username'];
+    }
+
+    $view = new View('user_index');
+    $view->title = 'RUN';
 
     $userRepository = new UserRepository();
     $uid = $userRepository->getId($_SESSION['username']);
@@ -31,13 +43,78 @@ class UserController
 
       $fileRepository = new FileRepository();
       $files = array();
+
       foreach ($fids as $fid) {
         $files[] = $fileRepository->readById($fid->file_id);
       }
 
+      foreach ($files as $key => $file) {
+        //get correct subfolder
+        $pathFragments = explode("/", $file->path);
+        $pathSize = sizeof($pathFragments);
+        $fileSubFolder = $pathFragments[$pathSize - 2];
+        if ($displayFolderName !== $fileSubFolder) {
+            unset($files[$key]);
+        }
+      }
+
+      $view->folderName = $folderName; //set subfolder for view
       $view->files = $files;
     }
+    $view->display();
+  }
 
+  public function folder() {
+    $userRepository = new UserRepository();
+
+    if (!isset($_SESSION['username'])){
+      $this->error('user_login', 'Login', 'Acces denied.');
+    }
+
+    if (!empty($_GET['name'])) {
+      $folderName = $_GET['name'];
+    } else {
+        $this->error('user_index', 'RUN', "Something went wrong");
+    }
+
+    $folderFragments = explode("/", $folderName);
+    if (sizeof($folderFragments) > 1) {
+      $displayFolderName = $folderFragments[sizeof($folderFragments) - 1]; //this name is only used for displaying
+    } else {
+      $displayFolderName = $folderName;
+    }
+
+    $view = new View('user_index');
+    $view->title = 'RUN';
+
+    $userRepository = new UserRepository();
+    $uid = $userRepository->getId($_SESSION['username']);
+    $uid = $uid->id;
+
+    $userFileRepository = new UserFileRepository();
+    if (!empty($userFileRepository->getFileIds($uid))) {
+      $fids = $userFileRepository->getFileIds($uid);
+
+      $fileRepository = new FileRepository();
+      $files = array();
+
+      foreach ($fids as $fid) {
+        $files[] = $fileRepository->readById($fid->file_id);
+      }
+
+      foreach ($files as $key => $file) {
+        //get correct subfolder
+        $pathFragments = explode("/", $file->path);
+        $pathSize = sizeof($pathFragments);
+        $fileSubFolder = $pathFragments[$pathSize - 2];
+        if ($displayFolderName !== $fileSubFolder) {
+            unset($files[$key]);
+        }
+      }
+
+      $view->folderName = $folderName; //set subfolder for view
+      $view->files = $files;
+    }
     $view->display();
   }
 
@@ -159,6 +236,14 @@ class UserController
 
     $view = new View('user_upload');
     $view->title = 'Upload';
+
+    if (!empty($_GET['folderName'])) {
+      //check if we are in folder and add to view if we are
+      $folderName = $_GET['folderName'];
+      $view->folderName = $folderName;
+    }
+
+
     $view->display();
   }
 
@@ -168,6 +253,11 @@ class UserController
     }
 
     if (isset($_POST['Submit'])) {
+      if (!empty($_GET['folderName'])) {
+        //check if we are in folder and save it if we are
+        $folderName = $_GET['folderName'];
+      }
+
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
         $this->error('user_upload', 'Upload', 'Name cant be empty.');
@@ -177,8 +267,12 @@ class UserController
       $file = $_FILES['file'];
 
       $username = $_SESSION['username'];
-      $path = "data/files/".$username."/".$file['name'];
-      //TODO: $_GET subfolder from upload
+      if (!empty($folderName) && $folderName != $username) {
+          //if folderName is username we are probably in the default dir
+          $path = "data/files/".$username."/".$folderName."/".$file['name'];
+      } else {
+          $path = "data/files/".$username."/".$file['name'];
+      }
 
 
       if (!is_dir("data/files/".$username)) {
@@ -205,6 +299,7 @@ class UserController
 
         $userFileRepository = new UserFileRepository();
         $userFileRepository->create($user_id, $file_id);
+
         header('Location: /user');
       }
       else {
@@ -220,6 +315,12 @@ class UserController
 
     $view = new View('user_makeDir');
     $view->title = 'Upload';
+    if (!empty($_GET['folderName'])) {
+      //check if we are in folder and add to view if we are
+      $folderName = $_GET['folderName'];
+      $view->folderName = $folderName;
+    }
+
     $view->display();
   }
 
@@ -229,6 +330,12 @@ class UserController
     }
 
     if (isset($_POST['Submit'])) {
+      if (!empty($_GET['folderName'])) {
+        //check if we are in folder and save it if we are
+        $folderName = $_GET['folderName'];
+        echo $folderName;
+      }
+
       $name = htmlspecialchars($_POST['name']);
       if ($name == "" || empty($name)){
         $this->error('user_makeDir', 'Create Folder', 'Name cant be empty.');
@@ -237,19 +344,28 @@ class UserController
         echo "not logged in";
       }
       $username = $_SESSION['username'];
+      if (!empty($folderName) && $folderName !== $username) {
+          //we are in a sub folder
+          $path = "data/files/".$username."/".$folderName."/".$name;
 
-      $path = "data/files/".$username."/".$name;
+          $name = $folderName."/".$name; //change name
+
+          //TODO foldername is trimmed in sub-dirs
+
+          //throw new Exception("Error Processing Request", 1);
+      } else {
+          $path = "data/files/".$username."/".$name;
+      }
 
       if (!is_dir("data/files/".$username)) {
         //create user-dir if it doesnt exist
         mkdir("data/files/".$username, 0777, true);
       }
 
-      if (!is_dir("data/files/".$username."/".$name)) {
+      if (!is_dir($path)) {
         //create dir if it doesnt exist
-        mkdir("data/files/".$username."/".$name, 0777, true);
+        mkdir($path, 0777, true);
       }
-
 
       $fileRepository = new FileRepository();
       if (!empty($fileRepository->getId($name))) {

@@ -12,6 +12,12 @@
 					echo '<div class="item-type"><img src="/'.$file->path.'" width="100"></div>';
 					break;
 
+					case '' :
+					//folder
+					$name = $file->name;
+					echo '<div class="item-type"><a href="/user/Folder?name='.$name.'"> FOLDER </a></div>';
+					break;
+
 					default:
 					echo '<div class="item-type">.'.$extension.'</div>';
 					break;
@@ -25,7 +31,7 @@
 			<?php if (!empty($file->tags)) : ?>
 				<div class="tag">
 					<div class="tag-text"><?= $file->tags ?></div>
-					<div class="tag-icon"><a href="user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
+					<div class="tag-icon"><a href="/user/delTag?id=<?= $file->id ?>">&#10005;</a></div>
 				</div>
 			<?php endif ?>
 			<a href="/user/delFile?id=<?= $file->id ?>">DEL</a>
@@ -33,5 +39,11 @@
 	<?php endforeach ?>
 <?php endif ?>
 <div class="object">
-	<div class="plus" onclick="location='/user/upload'">+</div>
+	<?php
+		if (isset($folderName)) {
+			echo $folderName;
+	  	echo "<div class='plus' onclick='location=\"/user/upload?folderName=$folderName\"'>+</div>";
+		} else {
+			echo "<div class='plus' onclick='location=\"/user/upload\"'>+</div>";
+		} ?>
 </div>
