@@ -191,6 +191,39 @@ class UserController
     header('Location: /user');
   }
 
+  public function doUpdate() {
+      if (!isset($_SESSION['username'])){
+        $this->error('user_login', 'Login', 'Acces denied.');
+      }
+
+      if (isset($_POST['submit'])) {
+        $newName = htmlspecialchars($_POST['filename']);
+
+        if (empty($newName) || $newName == "") {
+          $this->error('user_index', 'RUN', 'File Name cant be empty');
+          return;
+        }
+
+        if (empty($_GET['id'])) {
+          $this->error('user_index', 'RUN', 'Id not set');
+          return;
+        }
+
+        $fileId = $_GET['id'];
+        $fileRepository = new FileRepository();
+
+        $oldFile = $fileRepository->readById($fileId);
+
+        if(!empty($fileRepository->getId($newName))) {
+          $this->error('user_index', 'RUN', 'A file with that name already exists');
+          return;
+        }
+        $fileRepository->changeFile($newName, $fileId);
+
+        header('Location: /user');
+      }
+  }
+
   public function delete()
   {
     if (!isset($_SESSION['username'])){
