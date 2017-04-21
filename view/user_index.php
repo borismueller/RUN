@@ -40,7 +40,6 @@
 <div class="object">
 	<?php
 		if (isset($folderName)) {
-			echo $folderName;
 	  	echo "<div class='plus' onclick='location=\"/user/upload?folderName=$folderName\"'>+</div>";
 		} else {
 			echo "<div class='plus' onclick='location=\"/user/upload\"'>+</div>";
