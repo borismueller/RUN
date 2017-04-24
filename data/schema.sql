@@ -32,7 +32,7 @@ CREATE TABLE cart (
   FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-
+#--cart will be used for storage after logout
 #--makes a user with the password test
 INSERT INTO user (name, password) VALUES ('test', '$2y$10$/wt7Nannt9mfYCEw0e/B6.PBpPCMnRuyAmHKBEI8O6Vm0R6BQkAdi');
 

@@ -22,5 +22,5 @@ class ProductController
     $view->title = 'go';
     $view->products = $products; //add products to the view so we can later display them
     $view->display();
-  }
+  }  
 }
