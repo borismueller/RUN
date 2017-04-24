@@ -23,13 +23,6 @@ class UserController
         $folderName = $_SESSION['username'];
     }
 
-    $folderFragments = explode("/", $folderName);
-    if (sizeof($folderFragments) > 1) {
-      $displayFolderName = $folderFragments[sizeof($folderFragments) - 1]; //this name is only used for displaying
-    } else {
-      $displayFolderName = $_SESSION['username'];
-    }
-
     $view = new View('user_index');
     $view->title = 'RUN';
 
@@ -37,30 +30,6 @@ class UserController
     $uid = $userRepository->getId($_SESSION['username']);
     $uid = $uid->id;
 
-    $userFileRepository = new UserFileRepository();
-    if (!empty($userFileRepository->getFileIds($uid))) {
-      $fids = $userFileRepository->getFileIds($uid);
-
-      $fileRepository = new FileRepository();
-      $files = array();
-
-      foreach ($fids as $fid) {
-        $files[] = $fileRepository->readById($fid->file_id);
-      }
-
-      foreach ($files as $key => $file) {
-        //get correct subfolder
-        $pathFragments = explode("/", $file->path);
-        $pathSize = sizeof($pathFragments);
-        $fileSubFolder = $pathFragments[$pathSize - 2];
-        if ($displayFolderName !== $fileSubFolder) {
-            unset($files[$key]);
-        }
-      }
-
-      $view->folderName = $folderName; //set subfolder for view
-      $view->files = $files;
-    }
     $view->display();
   }
 
