@@ -22,8 +22,8 @@ return array(
     'database' => array(
         'host'     => 'localhost',
         'username' => 'root',
-        'password' => '',
-        'database' => 'RUN',
+        'password' => 'gibbiX12345',
+        'database' => 'WALK',
     ),
 
 );
