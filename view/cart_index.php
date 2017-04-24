@@ -3,7 +3,7 @@
 
 
 foreach ($products as $product) {
-    echo "<div>";
+    echo "<div style='width: 100%;'>";
     echo "<a href='/cart/removeFromCart?id=$product->id'> remove from cart </a>";
     echo "name: ".$product->name."  ";
     echo "type_id: ".$product->type_id."  ";
@@ -11,5 +11,8 @@ foreach ($products as $product) {
     echo "price: ".$product->price."  ";
     echo "</div>";
 }
+
+echo "Total price: ";
+echo $fullPrice;
 
 ?>
