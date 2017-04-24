@@ -1,8 +1,6 @@
 <?php
 
 require_once '../repository/UserRepository.php';
-require_once '../repository/FileRepository.php';
-require_once '../repository/UserFileRepository.php';
 
 /**
 * Siehe Dokumentation im DefaultController.
@@ -13,22 +11,10 @@ class UserController
   {
     $userRepository = new UserRepository();
 
-    if (!isset($_SESSION['username'])){
-      $this->error('user_login', 'Login', 'Acces denied.');
-    }
-
-    if (!empty($_GET['name'])) {
-      $folderName = $_GET['name'];
-    } else {
-        $folderName = $_SESSION['username'];
-    }
-
     $view = new View('user_index');
     $view->title = 'RUN';
 
     $userRepository = new UserRepository();
-    $uid = $userRepository->getId($_SESSION['username']);
-    $uid = $uid->id;
 
     $view->display();
   }
