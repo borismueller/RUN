@@ -6,6 +6,7 @@
   </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="/js/fileproperties.js"></script>
     <script src="/js/user_settings.js"></script>
     <script src="/js/nav.js"></script>
