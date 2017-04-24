@@ -82,13 +82,9 @@ class View
     {
         extract($this->properties);
 
-        if (isset($_SESSION['username'])) {
-          require './../view/header.php';
-          require $this->viewfile;
-          require './../view/footer.php';
-        } else {
-          require $this->viewfile;
-        }
+        require './../view/header.php';
+        require $this->viewfile;
+        require './../view/footer.php';
 
         if (isset($error)) {
           require './../view/error.php';
@@ -98,7 +94,7 @@ class View
 
     public function displayOnly() {
       extract($this->properties);
-      
+
       require $this->viewfile;
     }
 }
