@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS RUN;
-CREATE DATABASE RUN;
-USE RUN;
+DROP DATABASE IF EXISTS WALK;
+CREATE DATABASE WALK;
+USE WALK;
 
 CREATE TABLE user (
   id        INT NOT NULL AUTO_INCREMENT,
@@ -9,20 +9,27 @@ CREATE TABLE user (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE file (
+CREATE TABLE type (
   id        INT NOT NULL AUTO_INCREMENT,
-  name      VARCHAR(64) UNIQUE,
-  tags      VARCHAR(64),
-  path      VARCHAR(64),
+  name      VARCHAR(30) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE user_file (
-  user_id    INT NOT NULL,
-  file_id    INT NOT NULL,
-  PRIMARY KEY (user_id, file_id),
-  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
-  FOREIGN KEY (file_id) REFERENCES file(id) ON DELETE CASCADE
+CREATE TABLE product (
+  id        INT NOT NULL AUTO_INCREMENT,
+  name      VARCHAR(30) NOT NULL UNIQUE,
+  type_id   INT,
+  price     FLOAT,
+  FOREIGN KEY (type_id) REFERENCES type(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE cart (
+  user_id   INT NOT NULL,
+  product_id INT NOT NULL,
+  PRIMARY KEY (user_id, product_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
 
