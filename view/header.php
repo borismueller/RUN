@@ -32,9 +32,18 @@
     <button id="header-button" onclick="location='/user/logout'">Logout</button>
     <a class="settings glyphicon glyphicon-cog" href="/user/user_settings"></a>
   </div>
-  <div class="main">
-    <div class="header-column">
-      <a href="/user"><div class="logo"><img src="/images/run.png" width="150"></div> </a>
-      <div class="properties"></div>
-    </div>
-    <div class="container">
+  <nav>
+    <ul class="nav-ul">
+      <li class="items">SHOP</li>
+      <li class="items">Kategorien
+        <ul class="sub-nav">
+          <li class="items">Typ1</li>
+          <li class="items">Typ2</li>
+          <li class="items">Typ3</li>
+          <li class="items">Typ4</li>
+          <li class="items">Typ5</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
