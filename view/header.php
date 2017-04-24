@@ -23,14 +23,17 @@
 </head>
 <body>
   <div class="header-bar">
+    <h1 id="header-title">
+      Webshop
+    </h1>
     <form class="search-form" action="/user/search" method="post">
       <div>
         <input id="" class="input-search" type="text" name="searchbar" placeholder="Search">
         <!--<div>TODO Search icon</div>-->
       </div>
     </form>
-    <button id="header-button" onclick="location='/user/logout'">Logout</button>
-    <a class="settings glyphicon glyphicon-cog" href="/user/user_settings"></a>
+    <!--<button id="header-button" onclick="location='/user/logout'">Logout</button>-->
+    <!--<a class="settings glyphicon glyphicon-cog" href="/user/user_settings"></a>-->
   </div>
   <nav>
     <ul class="nav-ul">
