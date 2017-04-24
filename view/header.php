@@ -35,15 +35,14 @@
   <nav>
     <ul class="nav-ul">
       <li class="items">SHOP</li>
-      <li class="items">Kategorien
-        <ul class="sub-nav">
-          <li class="items">Typ1</li>
-          <li class="items">Typ2</li>
-          <li class="items">Typ3</li>
-          <li class="items">Typ4</li>
-          <li class="items">Typ5</li>
-        </ul>
-      </li>
+      <li class="items special">Kategorien</li>
+      <ul class="sub-nav">
+        <li>Typ1</li>
+        <li>Typ2</li>
+        <li>Typ3</li>
+        <li>Typ4</li>
+        <li>Typ5</li>
+      </ul>
     </ul>
   </nav>
   <div class="container">

@@ -163,13 +163,6 @@ body {
   width: 100%;
 }
 
-.header-column {
-  height: 90vh;
-  width: 20vw;
-  background-color: #2a4d67;
-  float: left;
-}
-
 .container {
   width: 80vw;
   float: right;
