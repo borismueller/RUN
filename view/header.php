@@ -22,30 +22,37 @@
   <![endif]-->
 </head>
 <body>
-  <div class="header-bar">
-    <h1 id="header-title">
-      Webshop
-    </h1>
-    <form class="search-form" action="/user/search" method="post">
-      <div>
-        <input id="" class="input-search" type="text" name="searchbar" placeholder="Search">
-        <!--<div>TODO Search icon</div>-->
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <form class="navbar-form navbar-left">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
       </div>
     </form>
-    <!--<button id="header-button" onclick="location='/user/logout'">Logout</button>-->
-    <!--<a class="settings glyphicon glyphicon-cog" href="/user/user_settings"></a>-->
-  </div>
-  <nav>
-    <ul class="nav-ul">
-      <li class="items">SHOP</li>
-      <li class="items special">Kategorien</li>
-      <ul class="sub-nav">
-        <li>Typ1</li>
-        <li>Typ2</li>
-        <li>Typ3</li>
-        <li>Typ4</li>
-        <li>Typ5</li>
-      </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
-  </nav>
+  </div>
+</div>
+</nav>
   <div class="container">
