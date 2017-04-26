@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">WebSiteName</a>
+      <a class="navbar-brand" href="/">RNS Webshop</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
