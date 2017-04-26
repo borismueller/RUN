@@ -23,22 +23,22 @@
   </head>
   <body>
     <div class="align-form">
-		<form class="center-form" action="/user/doLogin" method="post">
       <div>
-        <img src="/images/run.png" width="150">
-			<div>
-        <label class="label-help">?</label><br>
-		  	<input id="" class="input-form" name="username" type="text" placeholder="Username" required>
+        <h1 class="user-title">Login</h1>
+      </div>
+      <div>
+		<form class="center-form" action="/user/doLogin" method="post">
+        <label class="label-help user-form">Username</label><br>
+		  	<input id="" class="input-form" name="username" type="text" placeholder="Enter Username" required>
 			</div>
       <div>
-				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="password" type="password" placeholder="Password" required>
+				<label class="label-help user-form">Password</label><br>
+				<input id="" class="input-form" name="password" type="password" placeholder="Enter Password" required>
 			</div>
       <div class="submit-form-div">
 				<input id="" class="submit-form" name="Submit" type="submit" value="Login">
 			</div>
       </div>
-  	   <a href="/user/create" class="form-switch">Create an account</a>
 	</form>
 </div>
 
