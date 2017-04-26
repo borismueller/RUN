@@ -1,13 +1,13 @@
 <?php
-  foreach ($products as $product) {
-      echo "<div style='width: 100%;'>";
-      echo "<a href='/cart/addToCart?id=$product->id'> add to cart </a>";
-      echo "name: ".$product->name."  ";
-      echo "type_id: ".$product->type_id."  ";
-      echo "type: ".$product->type."  ";
-      echo "price: ".$product->price."  ";
-      echo "</div>";
-  }
+foreach ($products as $product): ?>
+<div style='width: 100%;'>
+  <a href='/cart/addToCart?id=$product->id'> add to cart </a>
+  <div><?=$product->name?></div>
+  <div><?=$product->type_id?></div>
+  <div><?=$product->type?></div>
+  <div><?=$product->price?></div>
+</div>
+<?php   endforeach;
 
-  echo "<br>";
+echo "<br>";
 ?>

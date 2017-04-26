@@ -2,15 +2,15 @@
 //var_dump($products);
 
 if (!empty($products)) {
-	foreach ($products as $product) {
-	    echo "<div style='width: 100%;'>";
-	    echo "<a href='/cart/removeFromCart?id=$product->id'> remove from cart </a>";
-	    echo "name: ".$product->name."  ";
-	    echo "type_id: ".$product->type_id."  ";
-	    echo "type: ".$product->type."  ";
-	    echo "price: ".$product->price."  ";
-	    echo "</div>";
-	}
+	<?php	foreach ($products as $product) : ?>
+		<div style='width: 100%;'>
+			<a href='/cart/removeFromCart?id=$product->id'> remove from cart </a>
+			<div><?=$product->name?></div>
+			<div><?=$product->type_id?></div>
+			<div><?=$product->type?></div>
+			<div><?=$product->price?></div>
+		</div>
+	<?php	endforeach;
 
 	echo "Total price: ";
 	echo $fullPrice;
