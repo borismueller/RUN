@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" ng-app="searchbar">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,44 +21,48 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body>
+<body ng-controller="SearchController as search">
   <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <div class="container-fluid">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">RNS Webshop</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="/product">Browse</a></li>
-      <li><a href="/cart">Your Cart</a></li>
-    </ul>
-    <form class="navbar-form navbar-left">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">RNS Webshop</a>
       </div>
-    </form>
-    <ul class="nav navbar-nav navbar-right">
-			<?php
-				if (!isset($_SESSION['username'])) {
-					echo	'<li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
-		    	echo  '<li><a href="/user/create"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
-				} else {
-					echo  '<li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
-				}
-			 ?>
-    </ul>
-  </div>
-</div>
-</nav>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="/product">Browse</a></li>
+          <li><a href="/cart">Your Cart</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchbox">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+            <div ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
+              <div>{{query.name}}</div>
+            </div>
+            <div ng-if="!searchbox"></div>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <?php
+          if (!isset($_SESSION['username'])) {
+            echo	'<li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+            echo  '<li><a href="/user/create"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
+          } else {
+            echo  '<li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+          }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container">
