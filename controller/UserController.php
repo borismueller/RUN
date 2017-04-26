@@ -1,6 +1,7 @@
 <?php
 
 require_once '../repository/UserRepository.php';
+require_once 'CartController.php';
 
 /**
 * Siehe Dokumentation im DefaultController.
@@ -143,6 +144,11 @@ class UserController
   }
 
   public function logout() {
+		if (!empty($_SESSION['cart']['products'])) {
+			//user has stuff in his cart
+			$cartController = new CartController();
+			$cartController->save();
+		}
     session_destroy();
     header('Location: /');
   }

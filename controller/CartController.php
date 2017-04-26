@@ -2,6 +2,8 @@
 
 require_once '../repository/ProductRepository.php';
 require_once '../repository/TypeRepository.php';
+require_once '../repository/CartRepository.php';
+require_once '../repository/UserRepository.php';
 
 /**
 * Siehe Dokumentation im DefaultController.
@@ -76,4 +78,21 @@ class CartController
       //removes the element from the array and keeps indexes correct
       array_splice($_SESSION['cart']['products'], $key, 1);
     }
+
+	public function save() {
+		if (!empty($_SESSION['cart']['products']) && isset($_SESSION['username'])) {
+			//just to be save
+			$userRepository = new UserRepository();
+			$cartRepository = new CartRepository();
+
+			$cart = $_SESSION['cart'];
+			$productIds = $cart['products'];
+			$username = $_SESSION['username'];
+			$uid = $userRepository->getId($username)->id;
+
+			foreach ($productIds as $pid) {
+				$cartRepository->create($uid, $pid);
+			}
+		}
+	}
 }
