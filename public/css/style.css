@@ -1,11 +1,10 @@
 .navbar {
   border-radius: 0;
+  margin-bottom: 0;
 }
 
 .image {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  object-fit: cover !important;
   height: 100% !important;
   width: 100% !important;
 }
@@ -15,4 +14,37 @@
   width: 100%;
   padding: 0;
 
+}
+
+.glyphicon-triangle-right {
+  position: absolute;
+  top: 50%;
+}
+
+
+.glyphicon-triangle-left {
+  position: absolute;
+  top: 50%;
+}
+
+.container {
+  height: calc(100vh - 50px + 73px) !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+.slider-container {
+  height: calc(100vh - 50px) !important;
+}
+
+#myCarousel {
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-inner {
+  height: calc(100vh - 50px) !important;
 }
