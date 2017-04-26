@@ -49,8 +49,14 @@
       </div>
     </form>
     <ul class="nav navbar-nav navbar-right">
-			<li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="/user/create"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+			<?php
+				if (!isset($_SESSION['username'])) {
+					echo	'<li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+		    	echo  '<li><a href="/user/create"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
+				} else {
+					echo  '<li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+				}
+			 ?>
     </ul>
   </div>
 </div>
