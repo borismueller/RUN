@@ -22,5 +22,27 @@ class ProductController
     $view->title = 'go';
     $view->products = $products; //add products to the view so we can later display them
     $view->display();
-  }  
+  }
+
+  public function search()
+  {
+    $name = $_GET['name'];
+
+    $productRepository = new ProductRepository();
+    $typeRepository = new TypeRepository();
+    $products = $productRepository->readByName($name);
+
+    foreach ($products as $product) {
+      $product->type = $typeRepository->readById($product->type_id)->name;
+    }
+
+    $productsArray[] = $products;
+
+    $view = new View('product_index');
+    $view->title = 'go';
+    $view->products = $productsArray;
+    $view->display();
+
+    //header("location:/product");
+  }
 }

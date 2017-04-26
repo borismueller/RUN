@@ -49,7 +49,7 @@
           </div>
         </form>
         <div class="query" ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
-          <div><a href="/product">{{query.name}}</a></div>
+          <div><a href="/product/search?name={{query.name}}">{{query.name}}</a></div>
         </div>
         <div ng-if="!searchbox"></div>
         <ul class="nav navbar-nav navbar-right">
