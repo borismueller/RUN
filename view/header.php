@@ -48,6 +48,10 @@
             </div>
           </div>
         </form>
+        <div class="query" ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
+          <div><a href="/product">{{query.name}}</a></div>
+        </div>
+        <div ng-if="!searchbox"></div>
         <ul class="nav navbar-nav navbar-right">
           <?php
           if (!isset($_SESSION['username'])) {
@@ -61,7 +65,4 @@
       </div>
     </div>
   </nav>
-  <div ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
-  </div>
-  <div ng-if="!searchbox"></div>
   <div class="container">
