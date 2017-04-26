@@ -102,3 +102,13 @@
 #footer {
   padding-left: 10px;
 }
+
+/*search*/
+.query {
+  position: absolute;
+  display: block;
+  width: 10%;
+  background-color: white;
+  margin-top: 50px;
+  z-index: 100;
+}
