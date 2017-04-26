@@ -2,9 +2,9 @@
 //var_dump($products);
 
 if (!empty($products)) {
-	<?php	foreach ($products as $product) : ?>
+	foreach ($products as $product) : ?>
 		<div style='width: 100%;'>
-			<a href='/cart/removeFromCart?id=$product->id'> remove from cart </a>
+			<a href='/cart/removeFromCart?id=<?=$product->id?>'> remove from cart </a>
 			<div><?=$product->name?></div>
 			<div><?=$product->type_id?></div>
 			<div><?=$product->type?></div>

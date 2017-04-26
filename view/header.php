@@ -29,9 +29,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-<<<<<<< HEAD
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">RNS Webshop</a>
+        <a class="navbar-brand" href="/">RNS</a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -47,10 +46,6 @@
                 <i class="glyphicon glyphicon-search"></i>
               </button>
             </div>
-            <div ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
-              <div>{{query.name}}</div>
-            </div>
-            <div ng-if="!searchbox"></div>
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
@@ -63,26 +58,10 @@
           }
           ?>
         </ul>
-=======
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">RNS</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="/product">Browse</a></li>
-      <li><a href="/cart">Your Cart</a></li>
-    </ul>
-    <form class="navbar-form navbar-left">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
->>>>>>> origin/master
       </div>
     </div>
   </nav>
+  <div ng-if="searchbox" ng-repeat="query in queries | filter: searchbox | limitTo: 10">
+  </div>
+  <div ng-if="!searchbox"></div>
   <div class="container">
