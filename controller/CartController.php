@@ -25,10 +25,15 @@ class CartController
         }
 
 				$fullPrice = 0;
-        foreach ($products as $product) {
-          //add the name of the type to the array & and add up price
-          $product->type = $typeRepository->readById($product->type_id)->name;
-					$fullPrice += $product->price;
+        foreach ($products as $key => $product) {
+					if (empty($product)){
+						//remove element if it's null, can happen with a weird id
+						unset($products[$key]);
+					} else {
+	          //add the name of the type to the array & and add up price
+	          $product->type = $typeRepository->readById($product->type_id)->name;
+						$fullPrice += $product->price;
+					}
         }
 
 	      $view->products = $products; //add products to the view so we can later display them
@@ -48,7 +53,6 @@ class CartController
       if (empty($_SESSION['cart']['products'])) {
         $_SESSION['cart']['products'] = array();
       }
-
 
       if (!empty($_SESSION['username'])) {
         $_SESSION['cart']['user'] = $_SESSION['username'];
