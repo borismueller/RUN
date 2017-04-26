@@ -43,10 +43,11 @@ class UserController
 			 if (!empty($userRepository->getId($username))) {
 				 //user with that name already exists
 				 $this->error('user_create', 'Register', 'A User with that name already exists.');
+			 } else {
+				 $userRepository->create($username, $password);
+				 $_SESSION['username'] = $username;
+				 header('Location: /user');
 			 }
-			 $userRepository->create($username, $password);
-			 $_SESSION['username'] = $username;
-			 header('Location: /user');
 		 }
 	 }
 
