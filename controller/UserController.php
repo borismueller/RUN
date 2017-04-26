@@ -35,14 +35,17 @@ class UserController
 			 $passwordRepeat = $_POST['passwordRepeat'];
 			 if ($username == "" || empty($username) || $password == "" || empty($password)){
 				 $this->error('user_create', 'Register', "Name and password can't be empty.");
+				 return;
 			 }
 			 if ($password !== $passwordRepeat) {
 				 $this->error('user_create', 'Register', 'Passwords have to match.');
+				 return;
 			 }
 			 $userRepository = new UserRepository();
 			 if (!empty($userRepository->getId($username))) {
 				 //user with that name already exists
 				 $this->error('user_create', 'Register', 'A User with that name already exists.');
+				 return;
 			 } else {
 				 $userRepository->create($username, $password);
 				 $_SESSION['username'] = $username;
