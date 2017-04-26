@@ -29,6 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+<<<<<<< HEAD
       <div class="navbar-header">
         <a class="navbar-brand" href="/">RNS Webshop</a>
       </div>
@@ -62,6 +63,25 @@
           }
           ?>
         </ul>
+=======
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">RNS</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="/product">Browse</a></li>
+      <li><a href="/cart">Your Cart</a></li>
+    </ul>
+    <form class="navbar-form navbar-left">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+>>>>>>> origin/master
       </div>
     </div>
   </nav>

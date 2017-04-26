@@ -2,6 +2,8 @@
 
 require_once '../repository/ProductRepository.php';
 require_once '../repository/TypeRepository.php';
+require_once '../repository/CartRepository.php';
+require_once '../repository/UserRepository.php';
 
 /**
 * Siehe Dokumentation im DefaultController.
@@ -25,10 +27,15 @@ class CartController
         }
 
 				$fullPrice = 0;
-        foreach ($products as $product) {
-          //add the name of the type to the array & and add up price
-          $product->type = $typeRepository->readById($product->type_id)->name;
-					$fullPrice += $product->price;
+        foreach ($products as $key => $product) {
+					if (empty($product)){
+						//remove element if it's null, can happen with a weird id
+						unset($products[$key]);
+					} else {
+	          //add the name of the type to the array & and add up price
+	          $product->type = $typeRepository->readById($product->type_id)->name;
+						$fullPrice += $product->price;
+					}
         }
 
 	      $view->products = $products; //add products to the view so we can later display them
@@ -48,7 +55,6 @@ class CartController
       if (empty($_SESSION['cart']['products'])) {
         $_SESSION['cart']['products'] = array();
       }
-
 
       if (!empty($_SESSION['username'])) {
         $_SESSION['cart']['user'] = $_SESSION['username'];
@@ -72,4 +78,21 @@ class CartController
       //removes the element from the array and keeps indexes correct
       array_splice($_SESSION['cart']['products'], $key, 1);
     }
+
+	public function save() {
+		if (!empty($_SESSION['cart']['products']) && isset($_SESSION['username'])) {
+			//just to be save
+			$userRepository = new UserRepository();
+			$cartRepository = new CartRepository();
+
+			$cart = $_SESSION['cart'];
+			$productIds = $cart['products'];
+			$username = $_SESSION['username'];
+			$uid = $userRepository->getId($username)->id;
+
+			foreach ($productIds as $pid) {
+				$cartRepository->create($uid, $pid);
+			}
+		}
+	}
 }

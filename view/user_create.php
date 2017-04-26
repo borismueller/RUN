@@ -23,25 +23,25 @@
   </head>
   <body>
 		<div class="align-form">
+      <div>
+        <h1 class="user-title">Sign Up</h1>
+      </div>
+      <div>
 		<form class="center-form" action="/user/doCreate" method="post">
-			<div>
-  			<img src="/images/run.png" width="150">
-			<div>
-				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="username" type="text" placeholder="Username" required>
+				<label class="label-help user-form">Username</label><br>
+				<input id="" class="input-form" name="username" type="text" placeholder="Enter Username" required>
 			</div>
 			<div>
-				<label class="label-help">?</label><br>
-				<input id="" class="input-form" name="password" type="password" placeholder="Password" required>
+				<label class="label-help user-form">Password</label><br>
+				<input id="" class="input-form" name="password" type="password" placeholder="Enter Password" required>
 			</div>
 			<div>
-				<input id="" class="input-form" name="passwordRepeat" type="password" placeholder="Repeat password" required>
+				<input id="" class="input-form" name="passwordRepeat" type="password" placeholder="Repeat Password" required>
 			</div>
 			<div class="submit-form-div">
-				<input id="" class="submit-form" name="Submit" type="submit" value="Submit">
+				<input id="" class="submit-form" name="Submit" type="submit" value="Sign Up">
 			</div>
 			</div>
-			<a href="/user/login" class="form-switch">Have an account ?</a>
 		</form>
 	</div>
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

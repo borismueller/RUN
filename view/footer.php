@@ -1,6 +1,6 @@
         <hr>
         <footer>
-          <p>&copy; Boris Müller, Julien Kellerhals & Casimir Blaser</p>
+          <p id="footer">&copy; Boris Müller, Julien Kellerhals & Casimir Blaser</p>
         </footer>
     </div>
   </div>
