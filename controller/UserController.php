@@ -26,6 +26,29 @@ class UserController
     $view->display();
   }
 
+	public function doCreate()
+	 {
+		 if ($_POST['Submit']) {
+			 $username = $_POST['username'];
+			 $password = $_POST['password'];
+			 $passwordRepeat = $_POST['passwordRepeat'];
+			 if ($username == "" || empty($username) || $password == "" || empty($password)){
+				 $this->error('user_create', 'Register', "Name and password can't be empty.");
+			 }
+			 if ($password !== $passwordRepeat) {
+				 $this->error('user_create', 'Register', 'Passwords have to match.');
+			 }
+			 $userRepository = new UserRepository();
+			 if (!empty($userRepository->getId($username))) {
+				 //user with that name already exists
+				 $this->error('user_create', 'Register', 'A User with that name already exists.');
+			 }
+			 $userRepository->create($username, $password);
+			 $_SESSION['username'] = $username;
+			 header('Location: /user');
+		 }
+	 }
+
   public function user_settings() {
     $username = $_SESSION['username'];
 

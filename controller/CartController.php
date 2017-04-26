@@ -11,6 +11,8 @@ class CartController
   public function index() {
       $productRepository = new ProductRepository();
       $typeRepository = new TypeRepository();
+			$view = new View('cart_index');
+			$view->title = 'Cart';
 
       if (!empty($_SESSION['cart']['products'])) {
         $cart = $_SESSION['cart'];
@@ -29,15 +31,10 @@ class CartController
 					$fullPrice += $product->price;
         }
 
-				$view = new View('cart_index');
-	      $view->title = 'go';
 	      $view->products = $products; //add products to the view so we can later display them
 				$view->fullPrice = $fullPrice;
-				$view->display();
-      } else {
-				echo "you don't have any items in your cart";
-				//TODO
 			}
+			$view->display();
   }
 
   public function addToCart() {
